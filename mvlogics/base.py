@@ -82,7 +82,7 @@ class _SlowEnumLogicMeta(_AllLogicMeta):
 class _FastEnumLogicMeta(_SlowEnumLogicMeta):
     class MemberContainer(_SlowEnumLogicMeta.MemberContainer):
         @_repr_cache
-        def __repr__(self): return f'({(n := self.typ.__name__)}.{f', {n}.'.join(self.names)})'
+        def __repr__(self): return f'({(n := self.typ.__name__)}.{f", {n}.".join(self.names)})'
 class _FakeProtocolMeta(type):
     _cache, _meta_map, _requirement_map, _prefix_map, _mcont_allowed = [None]*12, (_AllLogicMeta, _AllLogicMeta, _SlowEnumLogicMeta, _InfLogicMetaBase, _DecimalLogicMeta, _RationalLogicMeta, _SlowEnumLogicMeta, _FastEnumLogicMeta, _FastEnumLogicMeta, _FastEnumLogicMeta, _DecimalLogicMeta, _RationalLogicMeta), tuple(map(frozenset, ((), ('values',), ('members', 'values'), (), (), (), ('gullibility', 'consensus'), (), ('strong_disjunction', 'strong_conjunction', 'diamond', 'box', 'doubtful'), (), ('strong_conjunction',), ('strong_conjunction',)))), ('', '', '', '', '', '', '', 'G', 'L', 'P', '', ''), frozenset((2, 6, 7, 8, 9))
     def __new__(mcls, name, bases=(), namespace={}, /, **k):
