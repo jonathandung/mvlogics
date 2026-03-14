@@ -68,7 +68,7 @@ class _SlowEnumLogicMeta(_AllLogicMeta):
         def member_values(self): yield from self.__values.keys()
         def __set_name__(self, owner, name, /): assert name == 'members'; self.typ = owner
         @_repr_cache
-        def __repr__(self): return f'({', '.join(map(lambda i: str(self.generate(i)), self.__values))})'
+        def __repr__(self): return f'({", ".join(map(lambda i: str(self.generate(i)), self.__values))})'
         def __iter__(self): yield from map(self.generate, self.__values)
     def __getattr__(cls, name, /):
         if name in cls.members.names: super().__setattr__(name, r := cls(name)); return r
