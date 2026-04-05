@@ -48,12 +48,12 @@ class RM3(metaclass=_FastEnumLogicMeta):
     @classmethod
     def from_normalized(cls, val): return cls(int(val*2-1))
     def __reduce__(self): return type(self), (self.value,)
-def _check_names(n: tuple[str, ...], k: int|None, p: str):
+def _check_names(n, k, p):
     if k is None: k = len(n)
     elif n: raise ValueError('do not pass k with names')
     if k < 2: raise ValueError('k should be >= 2')
     return k, iter(n or map((p+'%s').__mod__, range(k)))
-def _to_members(K: int, N): return {x: Fraction(i, K-1) for i, x in enumerate(N)}
+def _to_members(K, N): return {x: Fraction(i, K-1) for i, x in enumerate(N)}
 def gödel_logic(*names, k=None, prefix='x_', clsname=None): K, N = _check_names(names, k, prefix); return _FastEnumLogicMeta(clsname or f'G{K}', (), {'members': _to_members(K, N), '__and__': lambda self, other, /: type(self)(min(self.value, other.value)), '__or__': lambda self, other, /: type(self)(max(self.value, other.value)), '__invert__': lambda self: type(self)(self.value == 0), 'implies': lambda self, other, /: type(self)(1) if self.value <= other.value else other, '__doc__': f"Godel's {K}-valued logic. See https://plato.stanford.edu/entries/logic-manyvalued/#GodLog."})
 G3, SmT = gödel_logic('F', 'NF', 'T'), gödel_logic('F', 'NF', 'T', clsname='SmT')
 def łukasiewicz_logic(*names, k=None, prefix='x_', clsname=None): K, N = _check_names(names, k, prefix); return _FastEnumLogicMeta(clsname or f'L{K}', (), {'members': _to_members(K, N), 'implies': (f := lambda self, other, /: type(self)(1+min(0, other.value-self.value))), '__invert__': lambda self: type(self)(1-self.value), '__and__': lambda self, other, /: f(f(self, other), other), '__or__': lambda self, other, /: ~(~self&~other), 'strong_disjunction': lambda self, other, /: f(~self, other), 'strong_conjunction': lambda self, other, /: ~f(self, ~other), 'diamond': (d := lambda self: f(~self, self)), 'box': lambda self: ~d(~self), 'doubtful': lambda self: self.iff(~self)})
