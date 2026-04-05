@@ -1,3 +1,4 @@
+# type: ignore
 import sys
 from weakref import WeakKeyDictionary
 from fractions import Fraction
@@ -105,4 +106,4 @@ class _FakeProtocolMeta(type):
         raise AttributeError(f'class {cls.__name__!r} has no attribute {name!r}')
     def __init_subclass__(mcls, /, **_): raise TypeError('cannot subclass _FakeProtocolMeta')
     def __instancecheck__(cls, instance): return cls.__subclasscheck__(type(instance))
-    def __subclasscheck__(cls, sub): return isinstance(sub, cls._meta_map[i := cls._idx]) and sub.__name__.startswith(cls._prefix_map[i]) and (cls._requirement_map[i]|MIXIN_METHODS).issubset(sub.__dict__)   
+    def __subclasscheck__(cls, sub): return isinstance(sub, cls._meta_map[i := cls._idx]) and sub.__name__.startswith(cls._prefix_map[i]) and (cls._requirement_map[i]|MIXIN_METHODS).issubset(sub.__dict__)

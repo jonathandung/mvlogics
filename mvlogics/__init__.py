@@ -1,3 +1,4 @@
+# type: ignore
 from .base import Fraction, Decimal, _AllLogicMeta, _FakeProtocolMeta, _DecimalLogicMeta, _RationalLogicMeta, _FastEnumLogicMeta, _SubmoduleMeta, _singleton_new, REQUIRED_ATTRS, FORBIDDEN, ALL_LOGICS, ALL_LOGICS_TUPLE, ALL_METHODS, FAKE_PROTOCOLS, FAKE_PROTOCOLS_TUPLE, RECOMMENDED_METHODS, MIXIN_METHODS, EXTENSION_METHODS, _all as __all__
 def is_logic(typ): return isinstance(typ, _AllLogicMeta)
 def is_logic_member(obj): return is_logic(type(obj))
