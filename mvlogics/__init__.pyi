@@ -5,6 +5,7 @@ from typing import final, overload, Self, ClassVar, NoReturn, TypeGuard, Callabl
 from fractions import Fraction
 from decimal import Decimal
 from .protocols import MemberlessLogicBase, LogicBase, StrictLogicBase, GödelLogic, ŁukasiewiczLogic, PostLogic, DecimalLogicBase, RationalLogicBase, TNormLogic, RationalTNormLogic
+__all__ = 'ALL_METHODS', 'FORBIDDEN', 'ALL_LOGICS', 'ALL_LOGICS_TUPLE', 'FAKE_PROTOCOLS', 'FAKE_PROTOCOLS_TUPLE', 'REQUIRED_ATTRS', 'RECOMMENDED_METHODS', 'MIXIN_METHODS', 'EXTENSION_METHODS', 'protocols', 'is_logic', 'is_logic_member', 'is_builtin_logic', 'is_builtin_logic_member', 'convert', 'gödel_logic', 'łukasiewicz_logic', 'post_logic', 't_norm_logic', 'logic_from_implication', 'decimal_t_norm_logic', 'rational_t_norm_logic', 'decimal_logic_from_implication', 'rational_logic_from_implication', 'Unit', 'Boolean', 'K3', 'LP', 'BI3', 'RM3', 'G3', 'SmT', 'L3', 'P3', 'B4', 'Π', 'Π_aleph_0', 'G_inf', 'G_aleph_0', 'L_inf', 'L_aleph_0', 'NP', 'NP_aleph_0'
 REQUIRED_ATTRS: frozenset[str]
 RECOMMENDED_METHODS: frozenset[str]
 MIXIN_METHODS: frozenset[str]
@@ -15,7 +16,6 @@ FAKE_PROTOCOLS: frozenset[str]
 ALL_LOGICS: frozenset[str]
 FAKE_PROTOCOLS_TUPLE: tuple[str, ...]
 ALL_LOGICS_TUPLE: tuple[str, ...]
-__all__: tuple[str, ...]
 def convert[L: MemberlessLogicBase](member: MemberlessLogicBase, cls: type[L]) -> L: ...
 def is_logic(typ: type) -> TypeGuard[type[MemberlessLogicBase]]: ...
 def is_logic_member(obj: object) -> TypeGuard[MemberlessLogicBase]: ...
