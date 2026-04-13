@@ -4,30 +4,28 @@ In math, specifically the study of logic, one occassionally finds it useful to c
 (verum) and false (falsum). There may be logics in which a member represents a statement of unknown truth, for instance. This library aims to
 implement the most common of these logics to facilitate mathematical research.
 
-## Operator reference
+## Setup
 
-Each logic class implements as many operators that make sense for it as possible. They have standardized names, signatures and semantics, as follows:
+Besides [pip](https://pypi.org/project/mvlogics/), this package is also [available on
+anaconda](https://anaconda.org/channels/conda-forge/packages/mvlogics/overview) via the conda-forge channel.
 
-### Shared by all logics
+You can install using either conda or pip, or directly from roughly fortnightly GitHub releases; no extra setup is needed.
 
-`__and__`: And
-`__or__`: Or
-`__invert__`, `__neg__`: Not
-`__pos__`: Identity
-`implies`: Implication
-`iff`, `xnor`: Biconditional
-`nor`: Neither
-`nand`: Sheffer stroke
-`abjunction`: Nonimplication
-`converse_implies`: Converse implication
-`converse_abjunction`: Converse nonimplication
+See the [installation guide](https://mvlogics.readthedocs.io/en/stable/installation.html) for more.
 
-### Optional
+## Version
 
-`strong_conjunction`: Strong conjunction; not (a implies (not b))
-`strong_disjunction`: Strong disjunction; (not a) implies b
-`diamond`: Modal diamond; (not a) implies a
-`box`: Modal box; not diamond(not a)
-`doubtful`: a equivalent to (not a)
-`gullibility`: a if a is equivalent to b, uncertain otherwise
-`consensus`: a if a is equivalent to b; the other input if an input is uncertain, uncertain otherwise
+This is mvlogics v0.9.1.
+
+This library is currently in the beta stage. It has not been thoroughly tested and logic implementations may contain errors.
+
+## Remarks
+
+This library is currently quite unoptimized, but the creator does not see much need or room for performance improvement.
+
+Below are some resources related to multi-valued logics:
+
+- [Wikipedia page](https://en.wikipedia.org/wiki/Many-valued_logic)
+- [Open Logic Project introduction](https://builds.openlogicproject.org/content/many-valued-logic/many-valued-logic.pdf)
+- [Book by Grzegorz Malinowski](https://academic.oup.com/book/54994)
+- [Academic paper](https://www.researchgate.net/publication/259645593_A_Treatise_on_Many-Valued_Logics)
