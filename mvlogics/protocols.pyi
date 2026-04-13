@@ -29,7 +29,7 @@ class AbstractLogicBase[R](MemberlessLogicBase):
     def __new__(cls, v: R, /) -> Self: ...
 class LogicBase[R](AbstractLogicBase[R]):
     @final
-    class MemberContainer[V: LogicBase]:
+    class MemberContainer[V: LogicBase[object]]:
         @property
         def names(self) -> tuple[str, ...]: '''Is not a property at runtime.'''
         def __init__(self, values: dict[str, R]): ...

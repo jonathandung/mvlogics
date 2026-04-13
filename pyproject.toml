@@ -3,7 +3,7 @@ requires = ["setuptools>=82", "wheel>=0.46.3"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "py-mvlogics"
+name = "mvlogics"
 version = "0.9.1"
 authors = [{name = "Jonathan Dung", email = "jonathandung@yahoo.com"}]
 maintainers = [{name = "Jonathan Dung", email = "jonathandung@yahoo.com"}]
@@ -36,7 +36,6 @@ packages = ["mvlogics"]
 [tool.mypy]
 python_version = "3.12"
 files = ["mvlogics/**/*.pyi"]
-verbosity = 1
 follow_imports = "skip"
 warn_unreachable = true
 warn_return_any = true
