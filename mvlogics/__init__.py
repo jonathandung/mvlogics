@@ -1,5 +1,5 @@
 # type: ignore
-from .base import Fraction, Decimal, _AllLogicMeta, _FakeProtocolMeta, _DecimalLogicMeta, _RationalLogicMeta, _FastEnumLogicMeta, _SubmoduleMeta, _singleton_new, REQUIRED_ATTRS, FORBIDDEN, ALL_LOGICS, ALL_LOGICS_TUPLE, ALL_METHODS, FAKE_PROTOCOLS, FAKE_PROTOCOLS_TUPLE, RECOMMENDED_METHODS, MIXIN_METHODS, EXTENSION_METHODS, _all as __all__
+from .base import ALL_LOGICS, ALL_LOGICS_TUPLE, ALL_METHODS, EXTENSION_METHODS, FAKE_PROTOCOLS, FAKE_PROTOCOLS_TUPLE, FORBIDDEN, MIXIN_METHODS, RECOMMENDED_METHODS, REQUIRED_ATTRS, Decimal, Fraction, _AllLogicMeta, _DecimalLogicMeta, _FakeProtocolMeta, _FastEnumLogicMeta, _RationalLogicMeta, _singleton_new, _SubmoduleMeta, _all as __all__
 def is_logic(typ): return isinstance(typ, _AllLogicMeta)
 def is_logic_member(obj): return is_logic(type(obj))
 def is_builtin_logic(typ): return typ.__name__ in ALL_LOGICS and typ.__module__ == __name__
@@ -11,7 +11,7 @@ class Unit(metaclass=_AllLogicMeta):
     __new__ = _singleton_new; box = diamond = __invert__ = lambda self: self; __and__ = __or__ = implies = gullibility = consensus = lambda self, _, /: self
     def __bool__(self): raise TypeError('cannot convert Unit to bool')
     def __repr__(self): return 'Unit.T'
-    def normalized(self): return Fraction(1)
+    def normalized(self): return Fraction(1) # noqa: PLR6301
     @classmethod
     def from_normalized(cls, val):
         if val == Fraction(1): return cls()
@@ -28,10 +28,10 @@ class Boolean(metaclass=_FastEnumLogicMeta):
 K3, LP = map(lambda n, g: _FastEnumLogicMeta(n, (), {'members': {'F': -1, 'I': 0, 'T': 1}, '__and__': lambda self, other, /: min(self, other), '__or__': lambda self, other, /: max(self, other), '__invert__': lambda self: type(self)(-self.value), '__bool__': lambda self: self.value >= (n == 'K'), 'gullibility': g, 'consensus': lambda self, other, /: self if self is other else other if self is (I := type(self).I) else self if other is I else I, 'normalized': lambda self: Fraction(self.value+1, 2), 'from_normalized': classmethod(lambda cls, val: cls(int(val*2-1)))}), ('K3', 'LP'), (lambda self, other, /: self if self is other else type(self).I, lambda self, other, /: self if self is other else other if self is (I := type(self).I) else self if other is I else type(self).F))
 class BI3(metaclass=_FastEnumLogicMeta):
     members = {'F': -1, 'I': 0, 'T': 1}
-    def __and__(self, other, /): return I if (I := __class__.I) in (self, other) else type(self)(min(self.value, other.value))
-    def __or__(self, other, /): return I if (I := __class__.I) in (self, other) else type(self)(max(self.value, other.value))
+    def __and__(self, other, /): return I if (I := __class__.I) in {self, other} else type(self)(min(self.value, other.value))
+    def __or__(self, other, /): return I if (I := __class__.I) in {self, other} else type(self)(max(self.value, other.value))
     def __invert__(self): return type(self)(-self.value)
-    def implies(self, other, /): return I if (I := __class__.I) in (self, other) else __class__.F if self is (T := __class__.T) and other is __class__.F else T
+    def implies(self, other, /): return I if (I := __class__.I) in {self, other} else __class__.F if self is (T := __class__.T) and other is __class__.F else T
     def gullibility(self, other, /): return self if self is other else __class__.I
     def consensus(self, other, /): return self if len(s := {self, other}) == 1 else s.discard(__class__.I) or (s.pop() if len(s) == 1 else __class__.I)
     def normalized(self): return Fraction(self.value+1, 2)
@@ -62,15 +62,15 @@ def post_logic(*names, k=None, prefix='x_', clsname=None): K, N = _check_names(n
 P3 = post_logic('F', 'U', 'T')
 class B4(metaclass=_FastEnumLogicMeta):
     members = {'F': 0, 'N': 1, 'B': 2, 'T': 3}
-    def __invert__(self): return self if self in (__class__.B, __class__.N) else type(self)(3-self.value)
+    def __invert__(self): return self if self in {__class__.B, __class__.N} else type(self)(3-self.value)
     def __bool__(self): return self.value >= 2
     def __and__(self, other, /):
-        if (F := __class__.F) in (self, other): return F
+        if (F := __class__.F) in {self, other}: return F
         if self is (T := __class__.T): return other
         if other is T: return self
         return self if self is other else F
     def __or__(self, other, /):
-        if (T := __class__.T) in (self, other): return T
+        if (T := __class__.T) in {self, other}: return T
         if self is (F := __class__.F): return other
         if other is F: return self
         return self if self is other else T
@@ -101,5 +101,5 @@ def t_norm_logic(*, name=None, rational=False, **k):
 def logic_from_implication(*, name=None, rational=False, **k): return lambda impliesf: (_RationalLogicMeta if rational else _DecimalLogicMeta)(name or impliesf.__name__, (), {'implies': impliesf, '__invert__': lambda self: self.implies(self.F), '__and__': lambda self, other: type(self)(min(self.value, other.value)), '__or__': lambda self, other, /: type(self)(max(self.value, other.value))}|k)
 decimal_t_norm_logic, rational_t_norm_logic, decimal_logic_from_implication, rational_logic_from_implication = t_norm_logic(), t_norm_logic(rational=True), logic_from_implication(), logic_from_implication(rational=True)
 NP, NP_aleph_0 = t_norm_logic(name='NP')(f := lambda u, v: min(u, v) if u+v > 1 else Decimal()), t_norm_logic(name='NP_aleph_0', rational=True)(f)
-class protocols(metaclass=_SubmoduleMeta, _supermodule_default_name_='logics'): __all__, __dir__ = FAKE_PROTOCOLS_TUPLE, (lambda: FAKE_PROTOCOLS_TUPLE)
+class protocols(metaclass=_SubmoduleMeta, _supermodule_default_name_='logics'): __all__, __dir__ = FAKE_PROTOCOLS_TUPLE, lambda: FAKE_PROTOCOLS_TUPLE # noqa: F811
 for _ in FAKE_PROTOCOLS_TUPLE: setattr(protocols, _, _FakeProtocolMeta(_))
