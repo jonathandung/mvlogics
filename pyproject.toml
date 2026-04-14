@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=82", "wheel>=0.46.3"]
+requires = ["setuptools>=82.0.1", "wheel>=0.46.3"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -20,7 +20,6 @@ Homepage = "https://github.com/jonathandung/mvlogics"
 Documentation = "https://mvlogics.readthedocs.io/en/stable/api/index.html"
 Repository = "https://github.com/jonathandung/mvlogics.git"
 Issues = "https://github.com/jonathandung/mvlogics/issues"
-Changelog = "https://github.com/jonathandung/mvlogics/blob/main/CHANGELOG.md"
 Download = "https://pypi.org/project/mvlogics/#files"
 "Release Notes" = "https://github.com/jonathandung/mvlogics/releases"
 
@@ -86,12 +85,6 @@ max-complexity = 24
 
 [tool.ruff.lint.pylint]
 allow-dunder-method-names = ["__default_factory__"]
-max-returns = 10
-max-args = 12
-max-positional-args = 7
-max-public-methods = 45
-max-branches = 18
-max-nested-blocks = 6
 
 [tool.ruff.format]
 quote-style = "single"
