@@ -41,12 +41,6 @@ For quick questions, consider:
 - Reading the FAQ section below
 - Asking in community channels
 
-## Security Issues
-
-**Never report security vulnerabilities publicly.**
-
-See [SECURITY.md](SECURITY.md) for details.
-
 ## 🔧 Common Issues & Solutions
 
 ### Installation Problems
@@ -103,7 +97,6 @@ As fast as the creator (currently the sole maintainer) can; that is:
 
 - Bug reports: 3 days
 - Feature requests: Reviewed biweekly
-- Security issues: 1 day
 - General questions: Hopefully community-driven
 
 At this stage, presume the creator dead if:
