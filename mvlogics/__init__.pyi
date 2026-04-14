@@ -8,6 +8,7 @@ from typing import Any, ClassVar, Literal, NoReturn, Self, TypeGuard, final, ove
 from .protocols import DecimalLogicBase, GödelLogic, LogicBase, MemberlessLogicBase, PostLogic, RationalLogicBase, RationalTNormLogic, StrictLogicBase, TNormLogic, ŁukasiewiczLogic
 __all__ = 'ALL_LOGICS', 'ALL_LOGICS_TUPLE', 'ALL_METHODS', 'B4', 'BI3', 'EXTENSION_METHODS', 'FAKE_PROTOCOLS', 'FAKE_PROTOCOLS_TUPLE', 'FORBIDDEN', 'G3', 'K3', 'L3', 'LP', 'MIXIN_METHODS', 'NP', 'P3', 'RECOMMENDED_METHODS', 'REQUIRED_ATTRS', 'RM3', 'Π', 'Boolean', 'G_aleph_0', 'G_inf', 'L_aleph_0', 'L_inf', 'NP_aleph_0', 'SmT', 'Unit', 'Π_aleph_0', 'convert', 'decimal_logic_from_implication', 'decimal_t_norm_logic', 'gödel_logic', 'is_builtin_logic', 'is_builtin_logic_member', 'is_logic', 'is_logic_member', 'logic_from_implication', 'post_logic', 'rational_logic_from_implication', 'rational_t_norm_logic', 't_norm_logic', 'łukasiewicz_logic'
 REQUIRED_ATTRS: frozenset[str]
+'''The method names all logic classes must have.'''
 RECOMMENDED_METHODS: frozenset[str]
 MIXIN_METHODS: frozenset[str]
 EXTENSION_METHODS: frozenset[str]

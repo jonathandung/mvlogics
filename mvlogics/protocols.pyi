@@ -3,6 +3,7 @@ from decimal import Decimal
 from fractions import Fraction
 from typing import Self, final, overload
 class MemberlessLogicBase:
+    '''All the operators are technically abstract, but they are not marked so here to avoid type annotation duplication.'''
     @classmethod
     def from_normalized(cls, val: Fraction) -> Self: '''Construct a member of the class from a normalized value, that is, an instance of `fractions.Fraction` between 0 and 1, or report an error if impossible.'''
     @classmethod
@@ -31,22 +32,24 @@ class LogicBase[V](AbstractLogicBase[V]):
     @final
     class MemberContainer[R]:
         @property
-        def names(self) -> tuple[str, ...]: ...
-        def __init__(self, values: dict[str, R]): ...
-        def generate(self, value: R) -> LogicBase[R]: ...
-        def from_name(self, name: str) -> LogicBase[R]: ...
-        def value_from_name(self, name: str, /) -> R: ...
-        def name_from_value(self, value: R, /) -> str: ...
-        def member_values(self) -> Generator[R]: ...
+        def names(self) -> tuple[str, ...]: '''The names of the truth values of the logic in ascending order of truth value.'''
+        def __init__(self, values: dict[str, R]): '''Initialize the member container from a mapping of names to unique values.'''
+        def generate(self, value: R) -> LogicBase[R]: '''Construct the member of the logic with the specified truth value.'''
+        def from_name(self, name: str) -> LogicBase[R]: '''Construct the member of the logic with the specified name.'''
+        def value_from_name(self, name: str, /) -> R: '''Get the truth value of the logic member with the specified name.'''
+        def name_from_value(self, value: R, /) -> str: '''Get the name of the logic member with the specified truth value.'''
+        def member_values(self) -> Generator[R]: '''Generate the truth values of the logic members in ascending order.'''
         def __set_name__(self, owner: type, name: str, /) -> None: ...
-        def __iter__(self) -> Generator[LogicBase[R]]: ...
+        def __iter__(self) -> Generator[LogicBase[R]]: '''Generate the members of the logic in ascending order of truth value.'''
     members: MemberContainer[V]
+    '''A special object holding the members of the logic.'''
 class InfiniteLogicBase[R](AbstractLogicBase[R]):
     T: Self
     F: Self
     verum: Self
     falsum: Self
     members: dict[R, Self]
+    '''A dictionary mapping truth values to members of the logic.'''
 class DecimalLogicBase(InfiniteLogicBase[Decimal]):
     @overload
     def __new__(cls, val: Decimal|float, /) -> Self: ...

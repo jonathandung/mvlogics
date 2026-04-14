@@ -24,7 +24,7 @@ class _AllLogicMeta(type):
     __defaults, __repr__ = None, _repr_cache(lambda cls: f'logics.{cls.__name__}')
     def __new__(mcls, name, bases, namespace, /, **k):
         if bases: raise ValueError('logics cannot inherit from anything')
-        if not REQUIRED_ATTRS.issubset(namespace): raise TypeError('missing methods')
+        if not REQUIRED_ATTRS.issubset(namespace): raise TypeError('missing methods for logic class')
         return super().__new__(mcls, name, bases, mcls.__default_factory__()|namespace, **k)
     @classmethod
     def __default_factory__(mcls):
@@ -37,14 +37,14 @@ class _InfLogicMetaBase(_AllLogicMeta):
     def F(cls): return cls.from_normalized(Fraction())
     verum, falsum = T, F
     @classmethod
-    def _ret_new_and_value(mcls): raise NotImplementedError('do not use this metaclass; inherit from it and implement this method or use either _DecimalLogicMeta or _RationalLogicMeta')
+    def _ret_new_and_value(mcls): raise NotImplementedError
     @classmethod
     def __default_factory__(mcls): return _AllLogicMeta.__default_factory__()|{'members': {}, '__repr__': _repr_cache(lambda self: f'{type(self).__name__}({self.value})')}|mcls._ret_new_and_value()
 class _DecimalLogicMeta(_InfLogicMetaBase):
     @classmethod
     def _ret_new_and_value(mcls):
         _ = WeakKeyDictionary()
-        def __new__(cls, val='0', /):
+        def __new__(cls, val='0', /, _=_):
             if (v := (c := cls.members).get(d := Decimal(val), None)) is None: c[d] = v = object.__new__(cls); _[v] = d
             return v
         return {'__new__': __new__, 'value': property(_.__getitem__)}
@@ -52,21 +52,21 @@ class _RationalLogicMeta(_InfLogicMetaBase):
     @classmethod
     def _ret_new_and_value(mcls):
         _ = WeakKeyDictionary()
-        def __new__(cls, /, *a):
+        def __new__(cls, /, *a, _=_):
             if (v := (c := cls.members).get(f := Fraction(*a), None)) is None: c[f] = v = object.__new__(cls); _[v] = f
             return v
         return {'__new__': __new__, 'value': property(_.__getitem__)}
 class _SlowEnumLogicMeta(_AllLogicMeta):
     class MemberContainer:
         __cache, __cache2, _NOT_GENERATED = WeakKeyDictionary(), WeakKeyDictionary(), type('NotGenerated', (), {'__new__': _singleton_new, '__repr__': lambda _, /: '<not generated>'})()
-        def __init__(self, values): self.__values, self.value_from_name, self.name_from_value, self.names = dict.fromkeys(values.values(), self._NOT_GENERATED), values.__getitem__, {v: k for k, v in values.items()}.__getitem__, tuple(values.keys())
+        def __init__(self, values): self.__values, self.value_from_name, self.name_from_value, self.names = dict.fromkeys(values.values(), self._NOT_GENERATED), values.__getitem__, {v: k for k, v in values.items()}.__getitem__, tuple(values)
         def generate(self, value):
             if (x := self.__values[value]) is self._NOT_GENERATED: self.__values[value] = x = object.__new__(self.typ); self.__cache[x], self.__cache2[x] = value, self.name_from_value(value)
             return x
         def from_name(self, name):
             if (x := self.__values[v := self.value_from_name(name)]) is self._NOT_GENERATED: self.__values[v] = x = object.__new__(self.typ); self.__cache[x], self.__cache2[x] = v, name
             return x
-        def member_values(self): yield from self.__values.keys()
+        def member_values(self): yield from self.__values
         def __set_name__(self, owner, name, /):
             if name != 'members': raise AttributeError(f"MemberContainer must be assigned to an attribute named 'members', not {name!r}")
             self.typ = owner
