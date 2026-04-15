@@ -4,10 +4,10 @@ Each logic class implements as many operators that make sense for it as possible
 
 ## Shared by all logics
 
-`__and__`: And
-`__or__`: Or
-`__invert__`, `__neg__`: Not
-`__pos__`: Identity
+`__and__` (&): And
+`__or__` (|): Or
+`__invert__` (~), `__neg__` (-): Not
+`__pos__` (+): Identity
 `implies`: Implication
 `iff`, `xnor`: Biconditional
 `nor`: Neither

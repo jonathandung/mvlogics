@@ -10,13 +10,12 @@ def convert(member, cls):
 class Unit(metaclass=_AllLogicMeta):
     __new__ = _singleton_new; box = diamond = __invert__ = lambda self: self; __and__ = __or__ = implies = gullibility = consensus = lambda self, _, /: self
     def __bool__(self): raise TypeError('cannot convert Unit to bool')
-    def __repr__(self): return 'Unit.T'
+    __repr__ = __reduce__ = lambda self: 'Unit.T' # noqa: ARG005
     def normalized(self): return Fraction(1) # noqa: PLR6301
     @classmethod
-    def from_normalized(cls, val):
+    def from_normalized(cls, val, /):
         if val == Fraction(1): return cls()
         raise ValueError(f'could not construct instance from val {val}')
-    def __reduce__(self): return type(self), ()
 Unit.T = Unit()
 class Boolean(metaclass=_FastEnumLogicMeta):
     members = {'F': False, 'T': True}
@@ -25,7 +24,7 @@ class Boolean(metaclass=_FastEnumLogicMeta):
     def __or__(self, other, /): return self or other
     def __invert__(self): return type(self)(not self)
     def __reduce__(self): return type(self), (self.value,)
-K3, LP = map(lambda n, g: _FastEnumLogicMeta(n, (), {'members': {'F': -1, 'I': 0, 'T': 1}, '__and__': lambda self, other, /: min(self, other), '__or__': lambda self, other, /: max(self, other), '__invert__': lambda self: type(self)(-self.value), '__bool__': lambda self: self.value >= (n == 'K'), 'gullibility': g, 'consensus': lambda self, other, /: self if self is other else other if self is (I := type(self).I) else self if other is I else I, 'normalized': lambda self: Fraction(self.value+1, 2), 'from_normalized': classmethod(lambda cls, val: cls(int(val*2-1)))}), ('K3', 'LP'), (lambda self, other, /: self if self is other else type(self).I, lambda self, other, /: self if self is other else other if self is (I := type(self).I) else self if other is I else type(self).F))
+K3, LP = map(lambda n, g: _FastEnumLogicMeta(n, (), {'members': {'F': -1, 'I': 0, 'T': 1}, '__and__': lambda self, other, /: min(self, other), '__or__': lambda self, other, /: max(self, other), '__invert__': lambda self: type(self)(-self.value), '__bool__': lambda self: self.value >= (n == 'K'), 'gullibility': g, 'consensus': lambda self, other, /: self if self is other else other if self is (I := type(self).I) else self if other is I else I, 'normalized': lambda self: Fraction(self.value+1, 2), 'from_normalized': classmethod(lambda cls, val, /: cls(int(val*2-1)))}), ('K3', 'LP'), (lambda self, other, /: self if self is other else type(self).I, lambda self, other, /: self if self is other else other if self is (I := type(self).I) else self if other is I else type(self).F))
 class BI3(metaclass=_FastEnumLogicMeta):
     members = {'F': -1, 'I': 0, 'T': 1}
     def __and__(self, other, /): return I if (I := __class__.I) in {self, other} else type(self)(min(self.value, other.value))
@@ -36,7 +35,7 @@ class BI3(metaclass=_FastEnumLogicMeta):
     def consensus(self, other, /): return self if len(s := {self, other}) == 1 else s.discard(__class__.I) or (s.pop() if len(s) == 1 else __class__.I)
     def normalized(self): return Fraction(self.value+1, 2)
     @classmethod
-    def from_normalized(cls, val): return cls(int(val*2-1))
+    def from_normalized(cls, val, /): return cls(int(val*2-1))
     def __reduce__(self): return type(self), (self.value,)
 class RM3(metaclass=_FastEnumLogicMeta):
     members = {'F': -1, 'B': 0, 'T': 1}
@@ -46,7 +45,7 @@ class RM3(metaclass=_FastEnumLogicMeta):
     def implies(self, other, /): return self if self is other else T if (self is (F := __class__.F))^(other is (T := __class__.T)) else F
     def normalized(self): return Fraction(self.value+1, 2)
     @classmethod
-    def from_normalized(cls, val): return cls(int(val*2-1))
+    def from_normalized(cls, val, /): return cls(int(val*2-1))
     def __reduce__(self): return type(self), (self.value,)
 def _check_names(n, k, p):
     if k is None: k = len(n)
@@ -79,7 +78,7 @@ class B4(metaclass=_FastEnumLogicMeta):
     def consensus(self, other, /): return self if len(s := {self, other}) == 1 else s.discard(__class__.N) or (s.pop() if len(s) == 1 else __class__.B)
     def normalized(self): return Fraction(self.value, 3)
     @classmethod
-    def from_normalized(cls, val): return cls(int(val*3))
+    def from_normalized(cls, val, /): return cls(int(val*3))
 Π, Π_aleph_0 = map(lambda name, meta: meta(name, (), {'__and__': lambda self, other, /: type(self)(self.value*other.value), '__or__': lambda self, other, /: type(self)(min(self.value, other.value)), '__invert__': lambda self: self.implies(type(self).F), 'implies': lambda self, other, /: type(self)(b/a if (a := self.value) > (b := other.value) else 1)}), ('Π', 'Π_aleph_0'), (_DecimalLogicMeta, _RationalLogicMeta))
 G_inf, G_aleph_0 = map(lambda name, meta: meta(name, (), {'__and__': lambda self, other, /: type(self)(self.value*other.value), '__or__': lambda self, other, /: type(self)(min(self.value, other.value)), '__invert__': lambda self: type(self)(self.value == 0), 'implies': lambda self, other, /: type(self).T if self.value <= other.value else other}), ('G_inf', 'G_aleph_0'), (_DecimalLogicMeta, _RationalLogicMeta))
 L_inf, L_aleph_0 = map(lambda name, meta: meta(name, (), {'implies': lambda self, other, /: type(self)(1+min(0, other.value-self.value)), '__invert__': lambda self: type(self)(1-self.value), '__and__': lambda self, other, /: self.implies(other).implies(other), '__or__': lambda self, other, /: ~(~self&~other), 'strong_disjunction': lambda self, other, /: (~self).implies(other), 'strong_conjunction': lambda self, other, /: ~self.implies(~other), 'diamond': lambda self: (~self).implies(self), 'box': lambda self: ~(~self).diamond(), 'doubtful': lambda self: self.iff(~self)}), ('L_inf', 'L_aleph_0'), (_DecimalLogicMeta, _RationalLogicMeta))

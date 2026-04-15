@@ -10,7 +10,9 @@ __all__ = 'ALL_LOGICS', 'ALL_LOGICS_TUPLE', 'ALL_METHODS', 'B4', 'BI3', 'EXTENSI
 REQUIRED_ATTRS: frozenset[str]
 '''The method names all logic classes must have.'''
 RECOMMENDED_METHODS: frozenset[str]
+'''The method names logic classes are recommended to have if suitable, corresponding to less common logical operations.'''
 MIXIN_METHODS: frozenset[str]
+'''The method names of methods that will be provided automatically to logic base classes.'''
 EXTENSION_METHODS: frozenset[str]
 FORBIDDEN: frozenset[str]
 ALL_METHODS: frozenset[str]
