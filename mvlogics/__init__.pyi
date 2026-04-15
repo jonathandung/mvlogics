@@ -4,9 +4,10 @@ to the built-in type bool. Members of all classes in this module are lazily gene
 from _collections_abc import Callable
 from decimal import Decimal
 from fractions import Fraction
-from typing import Any, ClassVar, Literal, NoReturn, Self, TypeGuard, final, overload
+from typing import Any, ClassVar, Final, Literal, NoReturn, Self, TypeGuard, final, overload
 from .protocols import DecimalLogicBase, GödelLogic, LogicBase, MemberlessLogicBase, PostLogic, RationalLogicBase, RationalTNormLogic, StrictLogicBase, TNormLogic, ŁukasiewiczLogic
 __all__ = 'ALL_LOGICS', 'ALL_LOGICS_TUPLE', 'ALL_METHODS', 'B4', 'BI3', 'EXTENSION_METHODS', 'FAKE_PROTOCOLS', 'FAKE_PROTOCOLS_TUPLE', 'FORBIDDEN', 'G3', 'K3', 'L3', 'LP', 'MIXIN_METHODS', 'NP', 'P3', 'RECOMMENDED_METHODS', 'REQUIRED_ATTRS', 'RM3', 'Π', 'Boolean', 'G_aleph_0', 'G_inf', 'L_aleph_0', 'L_inf', 'NP_aleph_0', 'SmT', 'Unit', 'Π_aleph_0', 'convert', 'decimal_logic_from_implication', 'decimal_t_norm_logic', 'gödel_logic', 'is_builtin_logic', 'is_builtin_logic_member', 'is_logic', 'is_logic_member', 'logic_from_implication', 'post_logic', 'rational_logic_from_implication', 'rational_t_norm_logic', 't_norm_logic', 'łukasiewicz_logic'
+__version__: Final[str]
 REQUIRED_ATTRS: frozenset[str]
 '''The method names all logic classes must have.'''
 RECOMMENDED_METHODS: frozenset[str]
@@ -14,12 +15,19 @@ RECOMMENDED_METHODS: frozenset[str]
 MIXIN_METHODS: frozenset[str]
 '''The method names of methods that will be provided automatically to logic base classes.'''
 EXTENSION_METHODS: frozenset[str]
+'''The method names logic classes may have for specialized use cases, including possibly niche fuzzy and modal logic operators.'''
 FORBIDDEN: frozenset[str]
+'''Method/property names logic classes are forbidden from implementing.'''
 ALL_METHODS: frozenset[str]
+'''Equivalent to RECOMMEDED_METHODS | REQUIRED_ATTRS | MIXIN_METHODS | EXTENSION_METHODS.'''
 FAKE_PROTOCOLS: frozenset[str]
+'''The names of the 'protocols' defined in the `protocols` submodule, which support instance and subclass testing.'''
 ALL_LOGICS: frozenset[str]
+'''The names of all built-in logics defined in this module.'''
 FAKE_PROTOCOLS_TUPLE: tuple[str, ...]
+'''`FAKE_PROTOCOLS` as a tuple with a canonical ordering.'''
 ALL_LOGICS_TUPLE: tuple[str, ...]
+'''`ALL_LOGICS` as a tuple with a canonical ordering.'''
 def convert[L: MemberlessLogicBase](member: MemberlessLogicBase, cls: type[L]) -> L: '''Convert a logic member `member` to a member of another logic class `cls`.'''
 def is_logic(typ: type) -> TypeGuard[type[MemberlessLogicBase]]: '''Return whether `typ` is a logic class.'''
 def is_logic_member(obj: object) -> TypeGuard[MemberlessLogicBase]: '''Return whether `obj` is a logic member.'''
@@ -41,7 +49,7 @@ class Unit(MemberlessLogicBase):
 @final
 class Boolean(LogicBase[bool]):
     '''Boolean or Aristotelian logic, where the law of the excluded middle holds.
-    Actually just a wrapper around the built-in class bool which satisfies the interface.'''
+    Simply wraps the built-in class `bool` to satisfy the interface.'''
     T: ClassVar[Self]
     F: ClassVar[Self]
     def __and__(self, other: Self, /) -> Self: ...

@@ -29,9 +29,9 @@ If applicable, add screenshots to help explain your problem.
 ## Complete the following
 
 - Python version tag (`python -VV`)
-- asyncutils version (`python -m asyncutils -v` or `asyncutils -v`)
+- mvlogics version (`python -c "print(__import__('mvlogics').__version__)"`)
 - Operating system
-- Package version (`pip show py-asyncutils` or `conda list py-asyncutils`)
+- Package version (`pip show mvlogics | grep Version:` or `conda list mvlogics --fields version`)
 - Full error traceback
 
 ## Additional context

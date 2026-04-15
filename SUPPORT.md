@@ -10,13 +10,7 @@ If you've found a bug, please:
 
 1. Check if it's already reported in [Issues](https://github.com/jonathandung/mvlogics/issues)
 2. If not, create a new issue
-3. Include:
-
-    - Python version tag (`python -VV`)
-    - Operating system
-    - Package version (`pip show mvlogics | grep "Version:"` or `conda list mvlogics`)
-    - Minimal reproducible example
-    - Full error traceback
+3. You will be prompted to choose among some issue templates. You cannot create a blank issue. Even if you succeed, we will close it.
 
 ## Feature Requests
 
@@ -79,7 +73,7 @@ Check if mvlogics is installed:
 pip list | grep mvlogics
 ```
 
-If the package is not working with python -S, check sys.path:
+If the package is not working with python -S, check `sys.path`:
 
 ```bash
 python -S -c "print(*__import__('sys').path, sep='\n')"
