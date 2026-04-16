@@ -1,6 +1,8 @@
-'''Implementations of various logics, not necessarily with two truth values. A logic is a propositional calculus, with an example being Aristotle's
-logical calculus, where the only truth values are T and F and the law of the excluded middle holds. Logics do not support subclassing, analogously
-to the built-in type `bool`. Members of all classes in this module but `Unit` are lazily generated to avoid significant memory overhead.'''
+'''Implementations of various logics, not necessarily with two truth values.
+A logic is a propositional calculus, with an example being the familiar logical calculus of Aristotle's, where the only truth values are
+T (True, verum) and F (False, falsum) and the law of the excluded middle (that is, p | ~p for all propositions p) holds.
+Logics do not support subclassing, same as the built-in type `bool`.
+Members of all classes in this module but `Unit` are lazily generated to avoid significant memory overhead.'''
 from _collections_abc import Callable
 from decimal import Decimal
 from fractions import Fraction

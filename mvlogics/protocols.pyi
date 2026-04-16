@@ -1,15 +1,15 @@
 from _collections_abc import Generator, Sequence
 from decimal import Decimal
 from fractions import Fraction
-from typing import Self, final, overload
+from typing import Any, Self, final, overload
 class MemberlessLogicBase[R]:
     '''All the operators are technically abstract, but they are not marked so here to avoid type annotation duplication.'''
     @classmethod
     def from_normalized(cls, val: Fraction) -> Self: '''Construct a member of the class from a normalized value, that is, an instance of `fractions.Fraction` between 0 and 1, or report an error if impossible.'''
     @classmethod
-    def from_logic_member(cls, member: MemberlessLogicBase) -> Self: '''Convert a member of any logic class to a member of the current class, or report an error if impossible.'''
+    def from_logic_member(cls, member: MemberlessLogicBase[Any]) -> Self: '''Convert a member of any logic class to a member of the current class, or report an error if impossible.'''
     def normalized(self) -> Fraction: '''Return the normalized value of the member, that is, a `fractions.Fraction` between 0 and 1 representing its degree of truth.'''
-    def convert_to[L: MemberlessLogicBase](self, cls: type[L]) -> L: '''Convert the member to a member of the specified logic class, or report an error if impossible.'''
+    def convert_to[L: MemberlessLogicBase[Any]](self, cls: type[L]) -> L: '''Convert the member to a member of the specified logic class, or report an error if impossible.'''
     def __and__(self, other: Self, /) -> Self: ...
     def __or__(self, other: Self, /) -> Self: ...
     def __invert__(self) -> Self: ...
