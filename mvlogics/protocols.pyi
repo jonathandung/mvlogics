@@ -2,7 +2,7 @@ from _collections_abc import Generator, Sequence
 from decimal import Decimal
 from fractions import Fraction
 from typing import Self, final, overload
-class MemberlessLogicBase:
+class MemberlessLogicBase[R]:
     '''All the operators are technically abstract, but they are not marked so here to avoid type annotation duplication.'''
     @classmethod
     def from_normalized(cls, val: Fraction) -> Self: '''Construct a member of the class from a normalized value, that is, an instance of `fractions.Fraction` between 0 and 1, or report an error if impossible.'''
@@ -26,9 +26,9 @@ class MemberlessLogicBase:
     def converse_abjunction(self, other: Self, /) -> Self: ...
     @property
     def name(self) -> str: ...
-class AbstractLogicBase[R](MemberlessLogicBase):
     @property
     def value(self) -> R: ...
+class AbstractLogicBase[R](MemberlessLogicBase[R]):
     def __new__(cls, v: R, /) -> Self: ...
 class LogicBase[V](AbstractLogicBase[V]):
     @final
@@ -53,6 +53,7 @@ class InfiniteLogicBase[R](AbstractLogicBase[R]):
     members: dict[R, Self]
     '''A dictionary mapping truth values to members of the logic.'''
 class DecimalLogicBase(InfiniteLogicBase[Decimal]):
+    '''Logics with infinitely many truth values between 0 and 1, represented as instances of `decimal.Decimal`.'''
     @overload
     def __new__(cls, val: Decimal|float, /) -> Self: ...
     @overload
@@ -60,6 +61,7 @@ class DecimalLogicBase(InfiniteLogicBase[Decimal]):
     @overload
     def __new__(cls, v: tuple[int, Sequence[int], int], /) -> Self: ...
 class RationalLogicBase(InfiniteLogicBase[Fraction]):
+    '''Logics with infinitely many truth values between 0 and 1, represented as instances of `fractions.Fraction`.'''
     @overload
     def __new__(cls, arg: str, /) -> Self: ...
     @overload

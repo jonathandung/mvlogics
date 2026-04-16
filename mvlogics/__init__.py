@@ -9,13 +9,13 @@ def convert(member, cls):
     if isinstance(member, type): cls, member = member, cls
     return member.convert_to(cls)
 class Unit(metaclass=_AllLogicMeta):
-    __new__, name = _singleton_new, 'T'; __repr__ = __reduce__ = lambda self: 'Unit.T'; box = diamond = __invert__ = lambda self: self; __and__ = __or__ = implies = gullibility = consensus = lambda self, _, /: self # noqa: ARG005
+    __new__, name, value = _singleton_new, 'T', 1; __repr__ = __reduce__ = lambda self: 'Unit.T'; box = diamond = __invert__ = lambda self: self; __and__ = __or__ = implies = gullibility = consensus = lambda self, _, /: self # noqa: ARG005
     def __bool__(self): raise TypeError('cannot convert Unit to bool')
     def normalized(self): return Fraction(1) # noqa: PLR6301
     @classmethod
-    def from_normalized(cls, val, /):
-        if val == Fraction(1): return cls()
-        raise ValueError(f'could not construct instance from val {val}')
+    def from_normalized(cls, v, /):
+        if v == Fraction(1): return cls()
+        raise ValueError(f'could not construct instance from val {v}')
 Unit.T = Unit()
 class Boolean(metaclass=_FastEnumLogicMeta):
     members = {'F': False, 'T': True}

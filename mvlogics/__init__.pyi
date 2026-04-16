@@ -1,6 +1,6 @@
 '''Implementations of various logics, not necessarily with two truth values. A logic is a propositional calculus, with an example being Aristotle's
 logical calculus, where the only truth values are T and F and the law of the excluded middle holds. Logics do not support subclassing, analogously
-to the built-in type bool. Members of all classes in this module are lazily generated to avoid significant memory overhead.'''
+to the built-in type `bool`. Members of all classes in this module but `Unit` are lazily generated to avoid significant memory overhead.'''
 from _collections_abc import Callable
 from decimal import Decimal
 from fractions import Fraction
@@ -19,7 +19,7 @@ EXTENSION_METHODS: frozenset[str]
 FORBIDDEN: frozenset[str]
 '''Method/property names logic classes are forbidden from implementing.'''
 ALL_METHODS: frozenset[str]
-'''Equivalent to RECOMMEDED_METHODS | REQUIRED_ATTRS | MIXIN_METHODS | EXTENSION_METHODS.'''
+'''Equivalent to `RECOMMEDED_METHODS | REQUIRED_ATTRS | MIXIN_METHODS | EXTENSION_METHODS`.'''
 FAKE_PROTOCOLS: frozenset[str]
 '''The names of the 'protocols' defined in the `protocols` submodule, which support instance and subclass testing.'''
 ALL_LOGICS: frozenset[str]
@@ -28,13 +28,13 @@ FAKE_PROTOCOLS_TUPLE: tuple[str, ...]
 '''`FAKE_PROTOCOLS` as a tuple with a canonical ordering.'''
 ALL_LOGICS_TUPLE: tuple[str, ...]
 '''`ALL_LOGICS` as a tuple with a canonical ordering.'''
-def convert[L: MemberlessLogicBase](member: MemberlessLogicBase, cls: type[L]) -> L: '''Convert a logic member `member` to a member of another logic class `cls`.'''
-def is_logic(typ: type) -> TypeGuard[type[MemberlessLogicBase]]: '''Return whether `typ` is a logic class.'''
-def is_logic_member(obj: object) -> TypeGuard[MemberlessLogicBase]: '''Return whether `obj` is a logic member.'''
+def convert[L: MemberlessLogicBase[Any]](member: MemberlessLogicBase[Any], cls: type[L]) -> L: '''Convert a logic member `member` to a member of another logic class `cls`.'''
+def is_logic(typ: type) -> TypeGuard[type[MemberlessLogicBase[Any]]]: '''Return whether `typ` is a logic class.'''
+def is_logic_member(obj: object) -> TypeGuard[MemberlessLogicBase[Any]]: '''Return whether `obj` is a logic member.'''
 def is_builtin_logic(typ: type) -> TypeGuard[type[LogicBase[Any]|Unit]]: '''Return whether `typ` is a built-in logic class.'''
 def is_builtin_logic_member(obj: object) -> TypeGuard[LogicBase[Any]|Unit]: '''Return whether `obj` is a member of a built-in logic class.'''
 @final
-class Unit(MemberlessLogicBase):
+class Unit(MemberlessLogicBase[int]):
     '''An implementation of a single-valued logic. May be useful as a base case in various recursive operations.'''
     T: ClassVar[Self]
     def __new__(cls) -> Self: ...
@@ -59,7 +59,7 @@ class Boolean(LogicBase[bool]):
     def diamond(self) -> Self: ...
 @final
 class K3(StrictLogicBase[int]):
-    '''Kleene's strong logic of indeterminancy (K_3), in which besides the truth values T and F, a new 'indeterminate' truth value I is introduced.
+    '''Kleene's strong logic of indeterminancy K_3, in which besides the truth values T and F, a new 'indeterminate' truth value I is introduced.
     T is the only designated truth value.'''
     T: ClassVar[Self]
     I: ClassVar[Self]
@@ -71,7 +71,9 @@ class K3(StrictLogicBase[int]):
     def consensus(self, other: Self, /) -> Self: ...
 @final
 class LP(StrictLogicBase[int]):
-    '''Priest's 'logic of paradox' (P_3), provisionally named LP because P_3 refers to ternary Post logic here. The truth tables are equivalent to those of Kleene's, except I is also designated as a truth value. The gullibility operation is thus not as well-defined as in K_3, and in the case that one operand is T and the other F, the arbitrary convention to return F is chosen.'''
+    '''Priest's 'logic of paradox' (P_3), provisionally named LP because P_3 refers to ternary Post logic here.
+    The truth tables are equivalent to those of Kleene's, except I is also designated as a truth value.
+    The gullibility operation is thus not as well-defined as in K_3, and in the case that one operand is T and the other F, the arbitrary convention to return F is chosen.'''
     T: ClassVar[Self]
     I: ClassVar[Self]
     F: ClassVar[Self]
@@ -93,7 +95,7 @@ class BI3(StrictLogicBase[int]):
     def consensus(self, other: Self, /) -> Self: ...
 @final
 class RM3(LogicBase[int]):
-    '''The R-mingle 3 logic, whose significance lies in its material implication implementation. The axiom of weakening does not hold in RM3.'''
+    '''The R-mingle 3 logic, whose significance lies in its material implication implementation. The axiom of weakening does not hold.'''
     T: ClassVar[Self]
     B: ClassVar[Self]
     F: ClassVar[Self]
@@ -165,33 +167,33 @@ class L_aleph_0(RationalLogicBase):
 @final
 class NP_aleph_0(RationalTNormLogic): '''A t-norm logic with the nilpotent minimum norm as the implication operator and rational truth values only.'''
 @overload
-def gödel_logic(name_1: str, name_2: str, /, *names: str, clsname: str|None=...) -> type[GödelLogic]: '''Returns a Gödel logic class with name clsname and truth values of names name_1 (0), name_2 (1/(k-1)), ..., name_(k-1) ((k-2)/(k-1)), name_k (1).'''
+def gödel_logic(name_1: str, name_2: str, /, *names: str, clsname: str|None=...) -> type[GödelLogic]: ...
 @overload
-def gödel_logic(*, k: int, prefix: str=..., clsname: str|None=...) -> type[GödelLogic]: ...
+def gödel_logic(*, k: int, prefix: str=..., clsname: str|None=...) -> type[GödelLogic]: '''Returns a Gödel logic class with name `clsname` and truth values of names `name_1` (0), `name_2` (1/(k-1)), ..., `name_(k-1)` ((k-2)/(k-1)), `name_k` (1).'''
 @overload
-def łukasiewicz_logic(name_1: str, name_2: str, /, *names: str, clsname: str|None=...) -> type[ŁukasiewiczLogic]: '''Returns a Łukasiewicz logic class with name clsname and truth values of names name_1 (0), name_2 (1/(k-1)), ..., name_(k-1) ((k-2)/(k-1)), name_k (1).'''
+def łukasiewicz_logic(name_1: str, name_2: str, /, *names: str, clsname: str|None=...) -> type[ŁukasiewiczLogic]: ...
 @overload
-def łukasiewicz_logic(*, k: int, prefix: str=..., clsname: str|None=...) -> type[ŁukasiewiczLogic]: ...
+def łukasiewicz_logic(*, k: int, prefix: str=..., clsname: str|None=...) -> type[ŁukasiewiczLogic]: '''Returns a Łukasiewicz logic class with name `clsname` and truth values of names `name_1` (0), `name_2` (1/(k-1)), ..., `name_(k-1)` ((k-2)/(k-1)), `name_k` (1).'''
 @overload
-def post_logic(name_1: str, name_2: str, /, *names: str, clsname: str|None=...) -> type[PostLogic]: '''Returns a Postlogic class with name `clsname` and truth values of names `name_1` (0), `name_2` (1/(k-1)), ..., `name_(k-1)` ((k-2)/(k-1)), `name_k` (1).'''
+def post_logic(name_1: str, name_2: str, /, *names: str, clsname: str|None=...) -> type[PostLogic]: ...
 @overload
-def post_logic(*, k: int, prefix: str=..., clsname: str|None=...) -> type[PostLogic]: ...
+def post_logic(*, k: int, prefix: str=..., clsname: str|None=...) -> type[PostLogic]: '''Returns a Post logic class with name `clsname` and truth values of names `name_1` (0), `name_2` (1/(k-1)), ..., `name_(k-1)` ((k-2)/(k-1)), `name_k` (1).'''
 @overload
-def t_norm_logic(*, name: str, rational: Literal[False]=False, **additional: Any) -> Callable[[Callable[[Decimal, Decimal], Decimal]], type[TNormLogic]]: '''A decorator factory whose products return t-norm logic classes given the strong conjunction operator, given whether the members should be constrained to rational numbers.'''
+def t_norm_logic(*, name: str, rational: Literal[False]=..., **additional: Any) -> Callable[[Callable[[Decimal, Decimal], Decimal]], type[TNormLogic]]: ...
 @overload
 def t_norm_logic(*, name: str, rational: Literal[True], **additional: Any) -> Callable[[Callable[[Fraction, Fraction], Fraction]], type[RationalTNormLogic]]: ...
 @overload
-def t_norm_logic(*, rational: Literal[False]=False, **additional: Any) -> Callable[[Callable[[Decimal, Decimal], Decimal]], type[TNormLogic]]: ...
+def t_norm_logic(*, rational: Literal[False]=..., **additional: Any) -> Callable[[Callable[[Decimal, Decimal], Decimal]], type[TNormLogic]]: ...
 @overload
-def t_norm_logic(*, rational: Literal[True], **additional: Any) -> Callable[[Callable[[Fraction, Fraction], Fraction]], type[RationalTNormLogic]]: ...
+def t_norm_logic(*, rational: Literal[True], **additional: Any) -> Callable[[Callable[[Fraction, Fraction], Fraction]], type[RationalTNormLogic]]:  '''A decorator factory whose products return t-norm logic classes given the strong conjunction operator, given whether the members should be constrained to rational numbers.'''
 @overload
-def logic_from_implication(*, name: str, rational: Literal[False]=False, **additional: Any) -> Callable[[Callable[[Decimal, Decimal], Decimal]], type[DecimalLogicBase]]: '''A decorator factory whose products return logic classes given the implication operator only, given whether the members should be constrained to rational numbers.'''
+def logic_from_implication(*, name: str, rational: Literal[False]=..., **additional: Any) -> Callable[[Callable[[Decimal, Decimal], Decimal]], type[DecimalLogicBase]]: ...
 @overload
 def logic_from_implication(*, name: str, rational: Literal[True], **additional: Any) -> Callable[[Callable[[Fraction, Fraction], Fraction]], type[RationalLogicBase]]: ...
 @overload
-def logic_from_implication(*, rational: Literal[False]=False, **additional: Any) -> Callable[[Callable[[Decimal, Decimal], Decimal]], type[DecimalLogicBase]]: ...
+def logic_from_implication(*, rational: Literal[False]=..., **additional: Any) -> Callable[[Callable[[Decimal, Decimal], Decimal]], type[DecimalLogicBase]]: ...
 @overload
-def logic_from_implication(*, rational: Literal[True], **additional: Any) -> Callable[[Callable[[Fraction, Fraction], Fraction]], type[RationalLogicBase]]: ...
+def logic_from_implication(*, rational: Literal[True], **additional: Any) -> Callable[[Callable[[Fraction, Fraction], Fraction]], type[RationalLogicBase]]:  '''A decorator factory whose products return t-norm logic classes given the strong conjunction operator, given whether the members should be constrained to rational numbers.'''
 def decimal_t_norm_logic(strong_conjunctionf: Callable[[Decimal, Decimal], Decimal]) -> type[TNormLogic]: '''Version of `t_norm_logic` specific to decimals.'''
 def rational_t_norm_logic(strong_conjunctionf: Callable[[Fraction, Fraction], Fraction]) -> type[RationalTNormLogic]: '''Version of `t_norm_logic` specific to fractions.'''
 def decimal_logic_from_implication(impliesf: Callable[[Decimal, Decimal], Decimal]) -> type[DecimalLogicBase]: '''Version of `logic_from_implication` specific to decimals.'''
