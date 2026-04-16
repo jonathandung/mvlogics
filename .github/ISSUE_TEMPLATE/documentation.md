@@ -37,7 +37,6 @@ If applicable, add screenshots to help explain your problem.
 - Python version tag (`python -VV`)
 - Read the docs build number; see [this page](https://app.readthedocs.org/projects/mvlogics/builds/?utm_source=mvlogics&utm_content=flyout)
 - Package version (`pip show mvlogics | grep Version:` or `conda list mvlogics --fields version`)
-- Full error traceback
 
 ## Additional context
 

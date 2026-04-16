@@ -120,7 +120,7 @@ class SmT(GödelLogic):
     F: ClassVar[Self]
 @final
 class G3(GödelLogic):
-    '''A three-valued logic of Gödel's, also known as Smetanov logic and the logic of here and there. Belongs to a larger family of 'Gödel' logics G_k with truth values 0, 1/(k-1), 2/(k-1), ..., (k-2)/(k-1), 1, with 1 designated as a 'true' truth value.'''
+    '''Alias to `SmT`. A three-valued logic of Gödel's, also known as Smetanov logic and the logic of here and there. Belongs to a larger family of 'Gödel' logics G_k with truth values 0, 1/(k-1), 2/(k-1), ..., (k-2)/(k-1), 1, with 1 designated as a 'true' truth value.'''
     T: ClassVar[Self]
     NF: ClassVar[Self]
     F: ClassVar[Self]
