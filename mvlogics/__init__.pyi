@@ -1,3 +1,4 @@
+# ty: ignore[invalid-method-override]
 '''Implementations of various logics, not necessarily with two truth values.
 A logic is a propositional calculus, with an example being the familiar logical calculus of Aristotle's, where the only truth values are
 T (True, verum) and F (False, falsum) and the law of the excluded middle (that is, p | ~p for all propositions p) holds.

@@ -13,5 +13,5 @@ jobs:
       with:
         python-version: 3.12
         cache-python: true
-    - run: uvx ruff check . --output-format=github
-    - run: uvx mypy mvlogics
+    - run: uvx ruff check --output-format=github
+    - run: uvx ty check

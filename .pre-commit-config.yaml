@@ -28,3 +28,13 @@ repos:
     hooks:
       - id: sphinx-lint
         args: ['--enable', 'default-role']
+  - repo: local
+    hooks:
+      - id: ty
+        name: ty
+        entry: ty check
+        language: python
+        files: \.pyi?$
+        pass_filenames: false
+        require_serial: true
+        additional_dependencies: ['ty']
