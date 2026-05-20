@@ -5,7 +5,7 @@ This module does not technically offer a public interface to create custom logic
 If you find an omission in the implementations of this library for a somewhat useful logic type, you are encouraged to open an issue using the logic
 request template. To acknowledge your contributions, your name will be included in the docstring of the new class; you can opt out if you want.
 
-However, if you do not want to do so for any reason, follow the template below:
+However, if you do not want to do so for any reason, follow the template below closely:
 
 ```python
 from fractions import Fraction
@@ -28,7 +28,7 @@ class MyLogic(metaclass=_FastEnumLogicMeta):
     def from_normalized(cls, val, /):
         # val is an instance of `fractions.Fraction` taking its value between 0 and 1 inclusive
         return cls(min(max(int(1/val), 0), 2))
-    # other methods; see OPERATOR_REFERENCE.md
+    # for other methods you may implement, see OPERATOR_REFERENCE.md
 ```
 
 and in the corresponding stub file:

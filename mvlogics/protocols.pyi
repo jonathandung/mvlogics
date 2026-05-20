@@ -41,8 +41,8 @@ class LogicBase[V](AbstractLogicBase[V]):
         def value_from_name(self, name: str, /) -> R: '''Get the truth value of the logic member with the specified name.'''
         def name_from_value(self, value: R, /) -> str: '''Get the name of the logic member with the specified truth value.'''
         def member_values(self) -> Generator[R]: '''Generate the truth values of the logic members in ascending order.'''
-        def __set_name__(self, owner: type, name: str, /) -> None: ...
         def __iter__(self) -> Generator[LogicBase[R]]: '''Generate the members of the logic in ascending order of truth value.'''
+        def __set_name__(self, owner: type, name: str, /) -> None: ...
     members: MemberContainer[V]
     '''A special object holding the members of the logic.'''
 class InfiniteLogicBase[R](AbstractLogicBase[R]):

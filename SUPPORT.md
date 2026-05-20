@@ -2,15 +2,15 @@
 
 Thank you for using mvlogics! This document outlines how to get help with this project.
 
-Before jumping to seek support, please read through **[README.md](https://github.com/jonathandung/mvlogics/blob/main/README.md)**.
+Before jumping to seek support, do skim through [the readme](https://github.com/jonathandung/mvlogics#mvlogics).
 
 ## Bug Reports
 
 If you've found a bug, please:
 
 1. Check if it's already reported in [Issues](https://github.com/jonathandung/mvlogics/issues)
-2. If not, create a new issue
-3. You will be prompted to choose among some issue templates. You cannot create a blank issue. Even if you succeed, we will close it.
+2. Create a new issue if not
+3. Refer and adhere to the issue template chosen, or risk your issue being closed without going through actual review
 
 ## Feature Requests
 
@@ -21,13 +21,6 @@ Have an idea? We'd love to hear it!
 - Include examples unless you think the idea is a no-brainer
 
 ## Questions
-
-### Community Support
-
-- [**GitHub Discussions**](https://github.com/jonathandung/mvlogics/discussions)
-- **Stack Overflow**: Tag questions with `[python]` and `[mvlogics]`
-
-### Quick Questions
 
 For quick questions, consider:
 
@@ -47,21 +40,24 @@ pip install -U mvlogics
 
 # Check for dependency shenanigans
 pip check
-echo $? # Should be 0
+
+# I personally also use:
+uv pip check
+uv pip tree
+uv pip tree --package mvlogics
 
 # Clean install
 pip uninstall mvlogics
 pip install mvlogics
 
-# If using pipx
-
+# If using pipx, likely installed with pip
 pip install -U pipx
 pipx ensurepath
 
 # If using conda
 conda update mvlogics
 
-# If using uv
+# If using uv; this is much faster from my experience
 uv pip install -U mvlogics
 ```
 
@@ -71,32 +67,28 @@ Check if mvlogics is installed:
 
 ```bash
 pip list | grep mvlogics
+# or
+pip show mvlogics
+# uv:
+uv pip show mvlogics
 ```
 
-If the package is not working with python -S, check `sys.path`:
+If the package is not working with python, check `sys.path`:
 
 ```bash
-python -S -c "print(*__import__('sys').path, sep='\n')"
+python3 -c "print(*__import__('sys').path, sep='\n')"
 ```
-
-## Version Compatibility
-
-- Python 3.12+ required
-- No dependencies outside development, which we're proud of
-- This project is under active development (new patch versions daily) that can have breaking changes
 
 ## Response Times
 
-As fast as the creator (currently the sole maintainer) can; that is:
+As fast as I can; that is:
 
 - Bug reports: 3 days
 - Feature requests: Reviewed biweekly
-- General questions: Hopefully community-driven
+- General questions: Community-driven
 
-At this stage, presume the creator dead if:
-
-- promises above are not met, and
-- there was no relevant post on the discussions page (e.g. hiatus announcement)
+I will try to make a post on the discussions page (e.g. hiatus announcement) and set my status to 'On vacation' or similar in case of inactivity
+such that I cannot fulfill these promises or meet deadlines I set myself.
 
 ## Closing remarks
 

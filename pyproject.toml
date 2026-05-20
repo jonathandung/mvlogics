@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=82.0.1", "wheel>=0.46.3"]
+requires = ["setuptools>=82.0.1", "wheel>=0.47.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "mvlogics"
-version = "0.9.3"
+version = "0.9.4"
 authors = [{name = "Jonathan Dung", email = "jonathandung@yahoo.com"}]
 maintainers = [{name = "Jonathan Dung", email = "jonathandung@yahoo.com"}]
 description = "Multi-valued logics."
@@ -24,10 +24,7 @@ Download = "https://pypi.org/project/mvlogics/#files"
 "Release Notes" = "https://github.com/jonathandung/mvlogics/releases"
 
 [project.optional-dependencies]
-dev = ["ruff>=0.15.10", "mypy>=1.20.0"]
-docs = ["sphinx>=9.1.0", "sphinx_rtd_theme>=3.1.0", "sphinx-notfound-page>=1.1.0", "sphinx-autoapi>=3.8.0", "doc8>=2.0.0", "sphinx-lint>=1.0.2"]
-pub = ["build>=1.4.2", "twine[keyring]>=6.2.0", "packaging>=26.0"]
-all = ["mvlogics[dev,docs,pub]"]
+docs = ["Sphinx>=9.1.0", "furo>=2025.12.19", "sphinx-book-theme>=1.2.0", "sphinx-copybutton>=0.5.2", "sphinx-notfound-page>=1.1.0", "sphinx-autoapi>=3.8.0", "sphinx-lint>=1.0.2", "myst-parser>=5.1.0"]
 
 [tool.setuptools]
 packages = ["mvlogics"]
@@ -88,7 +85,3 @@ allow-dunder-method-names = ["__default_factory__"]
 
 [tool.ruff.format]
 quote-style = "single"
-
-[tool.doc8]
-max-line-length = 150
-extension = ["rst"]

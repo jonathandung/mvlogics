@@ -6,23 +6,12 @@ on:
     branches: [main]
 jobs:
   build:
-    runs-on: ${{matrix.os}}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: [3.12, 3.13, 3.14]
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v6.0.2
-    - uses: actions/setup-python@v6.2.0
+    - uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b
       with:
-        python-version: ${{matrix.python-version}}
-    - name: Install dependencies
-      run: |
-        pip install -U pip
-        pip install -e .[dev]
-        pip check
-    - name: Lint with ruff
-      run: ruff check . --output-format=github
-    - name: Run mypy
-      run: python -m mypy mvlogics
+        python-version: 3.12
+        cache-python: true
+    - run: uvx ruff check . --output-format=github
+    - run: uvx mypy mvlogics

@@ -15,15 +15,18 @@ See the [installation guide](https://mvlogics.readthedocs.io/en/stable/installat
 
 ## Version
 
-This is mvlogics v0.9.3.
+This is mvlogics v0.9.4.
 
 This library is currently in the beta stage. It has not been thoroughly tested and logic implementations may contain errors.
 
 ## Remarks
 
+Regarding .markdownlint.json, even though there is no longer a pre-commit or workflow step requiring it, it contains the most basic ignores suitable
+for this project's files and should be respected. It will be auto-detected by relevant IDE extensions and allows running the linter locally.
+
 This library is currently quite unoptimized, but the creator does not see much need or room for performance improvement.
 
-Below are some resources related to multi-valued logics:
+## Resources
 
 - [Wikipedia page](https://en.wikipedia.org/wiki/Many-valued_logic)
 - [Open Logic Project introduction](https://builds.openlogicproject.org/content/many-valued-logic/many-valued-logic.pdf)

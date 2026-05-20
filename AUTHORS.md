@@ -2,11 +2,11 @@
 
 ## Project technical leads
 
-* Jonathan Dung - owner - Hong Kong
+- Jonathan Dung - owner - Hong Kong
 
 ## Developers
 
-* Jonathan Dung - sole maintainer - Hong Kong
+- Jonathan Dung - sole maintainer - Hong Kong
 
 ## All other contributors and their affiliations
 

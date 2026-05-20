@@ -1,6 +1,6 @@
 # type: ignore
 from .base import ALL_LOGICS, ALL_LOGICS_TUPLE, ALL_METHODS, EXTENSION_METHODS, FAKE_PROTOCOLS, FAKE_PROTOCOLS_TUPLE, FORBIDDEN, MIXIN_METHODS, RECOMMENDED_METHODS, REQUIRED_ATTRS, Decimal, Fraction, _AllLogicMeta, _DecimalLogicMeta, _FakeProtocolMeta, _FastEnumLogicMeta, _RationalLogicMeta, _singleton_new, _SubmoduleMeta, _all as __all__
-__version__ = '0.9.3'
+__version__ = '0.9.4'
 def is_logic(typ): return isinstance(typ, _AllLogicMeta)
 def is_logic_member(obj): return is_logic(type(obj))
 def is_builtin_logic(typ): return typ.__name__ in ALL_LOGICS and typ.__module__ == __name__
@@ -97,5 +97,5 @@ def t_norm_logic(*, name=None, rational=False, **k):
 def logic_from_implication(*, name=None, rational=False, **k): return lambda impliesf: (_RationalLogicMeta if rational else _DecimalLogicMeta)(name or impliesf.__name__, (), {'implies': impliesf, '__invert__': lambda self: self.implies(self.F), '__and__': lambda self, other: type(self)(min(self.value, other.value)), '__or__': lambda self, other, /: type(self)(max(self.value, other.value))}|k)
 decimal_t_norm_logic, rational_t_norm_logic, decimal_logic_from_implication, rational_logic_from_implication = t_norm_logic(), t_norm_logic(rational=True), logic_from_implication(), logic_from_implication(rational=True)
 NP, NP_aleph_0 = t_norm_logic(name='NP')(f := lambda u, v: min(u, v) if u+v > 1 else Decimal()), t_norm_logic(name='NP_aleph_0', rational=True)(f)
-class protocols(metaclass=_SubmoduleMeta, _supermodule_default_name_='logics'): __all__, __dir__ = FAKE_PROTOCOLS_TUPLE, lambda: FAKE_PROTOCOLS_TUPLE # noqa: F811
+class protocols(metaclass=_SubmoduleMeta, _supermodule_default_name_='logics'): __all__, __dir__ = FAKE_PROTOCOLS_TUPLE, lambda: FAKE_PROTOCOLS_TUPLE
 for _ in FAKE_PROTOCOLS_TUPLE: setattr(protocols, _, _FakeProtocolMeta(_))
