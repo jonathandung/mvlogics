@@ -13,10 +13,10 @@ if os.getenv('READTHEDOCS') == 'True':
     html_theme = 'furo'
     html_theme_options = {'top_of_page_buttons': ['view', 'edit'], 'source_repository': 'https://github.com/jonathandung/mvlogics', 'source_branch': 'main', 'source_directory': 'docs/source/'}
     source_suffix = {'.rst': 'restructuredtext', '.md': 'markdown'}
+    extensions.append('myst_parser')
 else:
     html_theme = 'sphinx_book_theme'
-    extensions.append('myst_parser')
-    suppress_warnings += ('ref.doc', 'toc.not_readable')
+    suppress_warnings.append('toc.not_readable')
 html_short_title = 'mvlogics 0.9.4 docs'
 autoapi_dirs = ['../../mvlogics']
 autoapi_file_patterns = ['*.pyi']
