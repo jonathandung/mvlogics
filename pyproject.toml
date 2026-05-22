@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mvlogics"
-version = "0.9.4"
+version = "0.9.5"
 authors = [{name = "Jonathan Dung", email = "jonathandung@yahoo.com"}]
 maintainers = [{name = "Jonathan Dung", email = "jonathandung@yahoo.com"}]
 description = "Multi-valued logics."
@@ -85,3 +85,20 @@ allow-dunder-method-names = ["__default_factory__"]
 
 [tool.ruff.format]
 quote-style = "single"
+
+[tool.ty.analysis]
+respect-type-ignore-comments = false
+
+[tool.ty.environment]
+python-version = "3.12"
+python-platform = "all"
+
+[tool.ty.rules]
+unused-ignore-comment = "error"
+
+[tool.ty.src]
+include = ["mvlogics"]
+exclude = ["mvlogics/__init__.py"]
+
+[tool.uv]
+required-version = ">=0.11.14"

@@ -1,4 +1,4 @@
-mvlogics 0.9.4
+mvlogics 0.9.5
 ==============
 
 **PyPI package name**: `mvlogics <https://pypi.org/p/mvlogics>`__
@@ -11,6 +11,7 @@ logics offer possibilities in between, the most characteristic example being a v
 
   custom-logic
   operators
+  api/index
 
 .. toctree::
   :caption: About the project

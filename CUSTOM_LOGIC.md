@@ -9,7 +9,8 @@ However, if you do not want to do so for any reason, follow the template below c
 
 ```python
 from fractions import Fraction
-from mvlogics.base import _FastEnumLogicMeta # the metaclass
+from mvlogics.base import _FastEnumLogicMeta # the metaclass to use if you do not need to generate the members when getting the representation of the
+# object containing the members of the logic class (the truth values), which formats as a tuple by default
 class MyLogic(metaclass=_FastEnumLogicMeta):
     members = {'member_name_0': 0, 'member_name_1': 1, 'member_name_2': 2} # Required; dictionary mapping truth value names to values
     # values do not have to be integers
@@ -48,7 +49,8 @@ class MyLogic(LogicBase[int]):
     def __reduce__(self) -> tuple[type[Self], tuple[int]]: ...
 ```
 
-For help in typing or implementing the logic, let us know in the discussions page; we will be happy to help.
+For help in typing or implementing the logic, let us know in the discussions page; we will be happy to help. You may also read the source code to get
+an idea of what's going on.
 
 Note:
 

@@ -1,4 +1,4 @@
-# type: ignore
+# ty: ignore[unresolved-attribute]
 import sys
 from decimal import Decimal, getcontext
 from fractions import Fraction
@@ -103,7 +103,7 @@ class _FakeProtocolMeta(type):
                 def __init_subclass__(cls, /, **_): raise TypeError('cannot subclass MemberContainer')
             cls.MemberContainer = MemberContainer; return MemberContainer
         if name in ALL_METHODS:
-            if (r := (c := cls._meth_cache).get(name)) is None: exec('@property\n'*(name == 'value')+f'def {name}(*_): raise NotImplementedError("method {name!r} of protocol {cls.__name__!r} is abstract")', locals=c); r = c[name] # noqa: S102
+            if (r := (c := cls._meth_cache).get(name)) is None: exec('@property\n'*(name == 'value')+f'def {name}(*_): raise NotImplementedError("method {name!r} of protocol {cls.__name__!r} is abstract")', None, c); r = c[name] # noqa: S102
             return r
         raise AttributeError(f'class {cls.__name__!r} has no attribute {name!r}')
     def __init_subclass__(mcls, /, **_): raise TypeError('cannot subclass _FakeProtocolMeta')

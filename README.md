@@ -15,7 +15,7 @@ See the [installation guide](https://mvlogics.readthedocs.io/en/stable/installat
 
 ## Version
 
-This is mvlogics v0.9.4.
+This is mvlogics v0.9.5.
 
 This library is currently in the beta stage. It has not been thoroughly tested and logic implementations may contain errors.
 
