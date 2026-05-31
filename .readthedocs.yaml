@@ -1,0 +1,24 @@
+version: 2
+sphinx:
+  configuration: docs/source/conf.py
+build:
+  os: ubuntu-lts-latest
+  tools:
+    python: latest
+  jobs:
+    post_create_environment:
+      - cp AI_USAGE_POLICY.md docs/source/ai-use.md
+      - cp CODE_OF_CONDUCT.md docs/source/conduct.md
+      - cp CONTRIBUTING.md docs/source/contributing.md
+      - cp CUSTOM_LOGIC.md docs/source/custom-logic.md
+      - cp OPERATOR_REFERENCE.md docs/source/operators.md
+      - cp SUPPORT.md docs/source/support.md
+formats:
+  - htmlzip
+  - pdf
+python:
+  install:
+    - method: pip
+      path: .
+      extra_requirements:
+        - docs
