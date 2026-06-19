@@ -1,6 +1,8 @@
 # Creating your own logic
 
-This module does not technically offer a public interface to create custom logic classes. The protocols in the `protocols` submodule are not for subclassing, and will not provide the mixin methods for you. The resulting subclasses will not even be recognized as logic classes by the indicator functions provided by this module.
+This module does not technically offer a public interface to create custom logic classes. The protocols in the `protocols` submodule are not for
+subclassing, and will not provide the mixin methods for you. The resulting subclasses will not even be recognized as logic classes by the indicator
+functions provided by this module.
 
 If you find an omission in the implementations of this library for a somewhat useful logic type, you are encouraged to open an issue using the logic
 request template. To acknowledge your contributions, your name will be included in the docstring of the new class; you can opt out if you want.

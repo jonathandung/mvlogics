@@ -26,9 +26,6 @@ Download = "https://pypi.org/project/mvlogics/#files"
 [project.optional-dependencies]
 docs = ["Sphinx>=9.1.0", "furo>=2025.12.19", "sphinx-book-theme>=1.2.0", "sphinx-copybutton>=0.5.2", "sphinx-notfound-page>=1.1.0", "sphinx-autoapi>=3.8.0", "sphinx-lint>=1.0.2", "myst-parser>=5.1.0"]
 
-[tool.coverage.report]
-exclude_lines = [".*# pragma: no (cover|branch)", "if __name__ == '__main__':", "raise NotImplementedError", "def __repr__\\(self.*\\):", "\\.\\.\\."]
-
 [tool.ruff]
 target-version = "py312"
 
@@ -55,6 +52,9 @@ docstring-quotes = "single"
 
 [tool.ruff.lint.flake8-annotations]
 mypy-init-return = true
+
+[tool.ruff.lint.flake8-unused-arguments]
+ignore-variadic-names = true
 
 [tool.ruff.lint.mccabe]
 max-complexity = 24

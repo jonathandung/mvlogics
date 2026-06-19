@@ -39,12 +39,18 @@ Update your package installer, then try the following fixes:
 pip install -U mvlogics
 
 # Check for dependency shenanigans
-pip check
+pip check # Exit code should be zero
 
-# I personally also use:
+# If you are limited to pip:
+pip install -U pipdeptree
+pipdeptree # Pretty print the pip packages dependency tree
+pipdeptree --packages mvlogics # Show only the dependents and dependencies of this package
+
+# For uv (much faster):
+uv pip install -U mvlogics
 uv pip check
-uv pip tree
-uv pip tree --package mvlogics
+uv pip tree # Also has less clutter, avoiding showing a single package repeatedly
+uv pip tree --package mvlogics # Only this package as above
 
 # Clean install
 pip uninstall mvlogics
@@ -55,10 +61,7 @@ pip install -U pipx
 pipx ensurepath
 
 # If using conda
-conda update mvlogics
-
-# If using uv; this is much faster from my experience
-uv pip install -U mvlogics
+conda update py-asyncutils
 ```
 
 ### Import Errors

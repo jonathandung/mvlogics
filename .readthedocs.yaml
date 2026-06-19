@@ -2,7 +2,7 @@ version: 2
 sphinx:
   configuration: docs/source/conf.py
 build:
-  os: ubuntu-lts-latest
+  os: ubuntu-26.04
   tools:
     python: latest
   jobs:
@@ -18,7 +18,7 @@ formats:
   - pdf
 python:
   install:
-    - method: pip
+    - method: uv
+      command: pip
       path: .
-      extra_requirements:
-        - docs
+      extras: [docs]
