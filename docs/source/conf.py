@@ -1,7 +1,7 @@
 import os
 project = 'mvlogics'
 author = 'Jonathan Dung'
-copyright = '2026 Jonathan Dung'
+copyright = '2026 Jonathan Dung' # noqa: A001
 version = '0.9'
 release = '0.9.5'
 need_sphinx = '9.1.0'
