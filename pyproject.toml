@@ -1,10 +1,10 @@
 [build-system]
-requires = ["uv_build>=0.11.22,<0.12"]
+requires = ["uv_build>=0.11.24,<0.12"]
 build-backend = "uv_build"
 
 [project]
 name = "mvlogics"
-version = "0.9.5"
+version = "0.9.6"
 authors = [{name = "Jonathan Dung", email = "jonathandung@yahoo.com"}]
 maintainers = [{name = "Jonathan Dung", email = "jonathandung@yahoo.com"}]
 description = "Multi-valued logics."
@@ -80,7 +80,7 @@ include = ["mvlogics"]
 exclude = ["mvlogics/__init__.py"]
 
 [tool.uv]
-required-version = ">=0.11.22,<0.12"
+required-version = ">=0.11.24,<0.12"
 
 [tool.uv.build-backend]
 module-name = "mvlogics"

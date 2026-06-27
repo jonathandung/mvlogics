@@ -1,5 +1,5 @@
-mvlogics 0.9.5
-==============
+mvlogics
+========
 
 **PyPI package name**: `mvlogics <https://pypi.org/p/mvlogics>`__
 

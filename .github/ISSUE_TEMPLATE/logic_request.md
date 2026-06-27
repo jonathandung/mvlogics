@@ -18,8 +18,8 @@ Describe the logic and summarize its potential use cases.
 
 How this would probably be implemented.
 
-It would be best to include the bodies of the `__and__`, `__or__` and `__invert__` methods, and also possibly `from_normalized` (must come with
-`normalize`), beside the selling points of the logic type.
+It would be best to include the bodies of the ``__and__``, ``__or__`` and ``__invert__`` methods, and also possibly ``from_normalized`` (must come
+with ``normalize``), beside the selling points of the logic type.
 
 Pseudocode is fine in this early stage.
 

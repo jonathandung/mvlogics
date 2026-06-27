@@ -1,9 +1,7 @@
 SPHINXOPTS ?=
 SPHINXBUILD ?= sphinx-build
-SOURCEDIR = source
-BUILDDIR = build
-help:
-	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 .PHONY: help Makefile
+help:
+	@$(SPHINXBUILD) -M help source build $(SPHINXOPTS) $(O)
 %: Makefile
-	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+	@$(SPHINXBUILD) -M $@ source build $(SPHINXOPTS) $(O)

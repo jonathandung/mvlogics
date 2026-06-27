@@ -76,7 +76,7 @@ pip show mvlogics
 uv pip show mvlogics
 ```
 
-If the package is not working with python, check `sys.path`:
+If the package is not working with python, check ``sys.path``:
 
 ```bash
 python3 -c "print(*__import__('sys').path, sep='\n')"

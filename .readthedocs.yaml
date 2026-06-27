@@ -13,12 +13,5 @@ build:
       - cp CUSTOM_LOGIC.md docs/source/custom-logic.md
       - cp OPERATOR_REFERENCE.md docs/source/operators.md
       - cp SUPPORT.md docs/source/support.md
-formats:
-  - htmlzip
-  - pdf
-python:
-  install:
-    - method: uv
-      command: pip
-      path: .
-      extras: [docs]
+formats: [htmlzip, pdf]
+python: {install: [{path: ., extra_requirements: [docs]}]}
