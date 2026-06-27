@@ -1,4 +1,4 @@
-
+# ty: ignore[unresolved-attribute]
 import sys
 from decimal import Decimal, getcontext
 from fractions import Fraction
