@@ -1,0 +1,32 @@
+[[repos]]
+repo = "builtin"
+hooks = [
+  {id = "check-added-large-files", args = ["--maxkb=150"], exclude = '^uv\.lock$'},
+  {id = "check-case-conflict"}, {id = "check-illegal-windows-names"}, {id = "check-merge-conflict"},
+  {id = "check-toml"}, {id = "check-yaml"}, {id = "end-of-file-fixer"}, {id = "trailing-whitespace"}
+]
+
+[[repos]]
+repo = "https://github.com/abravalheri/validate-pyproject"
+rev = "v0.25"
+hooks = [{id = "validate-pyproject"}]
+
+[[repos]]
+repo = "https://github.com/astral-sh/ruff-pre-commit"
+rev = "v0.15.22"
+hooks = [{id = "ruff-check"}]
+
+[[repos]]
+repo = "https://github.com/astral-sh/ty-pre-commit"
+rev = "v0.0.61"
+hooks = [{id = "ty", args = ["--isolated", "--no-python-downloads"]}]
+
+[[repos]]
+repo = "https://github.com/Yelp/detect-secrets"
+rev = "v1.5.0"
+hooks = [{id = "detect-secrets", args = ["--baseline", ".secrets.baseline"]}]
+
+[[repos]]
+repo = "https://github.com/sphinx-contrib/sphinx-lint"
+rev = "v1.0.2"
+hooks = [{id = "sphinx-lint",args = ["--enable", "default-role"]}]

@@ -38,7 +38,7 @@ def is_builtin_logic(typ: type) -> TypeGuard[type[LogicBase[Any]|Unit]]: '''Retu
 def is_builtin_logic_member(obj: object) -> TypeGuard[LogicBase[Any]|Unit]: '''Return whether ``obj`` is a member of a built-in logic class.'''
 @final
 class Unit(MemberlessLogicBase[int]):
-    '''An implementation of a single-valued logic. May be useful as a base case in various recursive operations.'''
+    '''An implementation of a single-valued logic. May be useful as a base case in recursive operations.'''
     T: ClassVar[Self]
     def __new__(cls) -> Self: ...
     def __and__(self, other: Self, /) -> Self: ...

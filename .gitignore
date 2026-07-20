@@ -18,7 +18,6 @@
 .env*
 .python-version
 .ruff_cache/
-.uv-stamp
 .venv/
 ENV/
 __pycache__/

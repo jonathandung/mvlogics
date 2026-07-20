@@ -1,7 +1,7 @@
 import os
 project = 'mvlogics'
 author = 'Jonathan Dung'
-copyright = '2026 Jonathan Dung' # noqa: A001
+copyright = '2026 Jonathan Dung' # ruff:ignore[builtin-variable-shadowing]
 version = '0.9'
 release = '0.9.6'
 need_sphinx = '9.1.0'

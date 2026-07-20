@@ -1,4 +1,4 @@
-from _collections_abc import Generator, Sequence
+from collections.abc import Generator, Sequence
 from decimal import Decimal
 from fractions import Fraction
 from typing import Any, Self, final, overload

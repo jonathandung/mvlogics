@@ -30,8 +30,8 @@ docs = ["Sphinx>=9.1.0", "furo>=2025.12.19", "sphinx-book-theme>=1.2.0", "sphinx
 target-version = "py312"
 
 [tool.ruff.lint]
-ignore = ["E226", "E227", "E252", "E261", "E301", "E302", "E305", "E306", "E501", "E701", "E702", "E741", "PLC2401", "PLC2403", "PYI021", "RUF012", "RUF067", "TRY003"]
-select = ["A", "ARG", "ANN", "B", "BLE001", "COM819", "C4", "C901", "E", "EM103", "ERA001", "EXE", "F", "FIX002", "FLY002", "FURB", "G", "ISC", "LOG", "N804", "N805", "N81", "PERF", "PIE", "PGH004", "PL", "PYI", "RET", "RSE102", "RUF", "S", "SIM", "SLOT", "T100", "T201", "TRY", "UP", "W", "YTT"]
+ignore = ["missing-whitespace-around-arithmetic-operator", "missing-whitespace-around-bitwise-or-shift-operator", "missing-whitespace-around-parameter-equals", "too-few-spaces-before-inline-comment", "blank-line-between-methods", "blank-lines-top-level", "blank-lines-after-function-or-class", "blank-lines-before-nested-definition", "line-too-long", "multiple-statements-on-one-line-colon", "multiple-statements-on-one-line-semicolon", "ambiguous-variable-name", "non-ascii-name", "non-ascii-import-name", "docstring-in-stub", "mutable-class-default", "non-empty-init-module", "raise-vanilla-args"]
+select = ["A", "ARG", "ANN", "B", "blind-except", "prohibited-trailing-comma", "C4", "complex-structure", "E", "dot-format-in-exception", "commented-out-code", "EXE", "F", "line-contains-todo", "static-join-to-f-string", "FURB", "G", "ISC", "LOG", "invalid-first-argument-name-for-class-method", "invalid-first-argument-name-for-method", "N81", "PERF", "PIE", "blanket-noqa", "PL", "PYI", "RET", "unnecessary-paren-on-raise-exception", "RUF", "S", "SIM", "SLOT", "debugger", "print", "TRY", "UP", "W", "YTT"]
 preview = true
 typing-extensions = false
 
@@ -40,7 +40,7 @@ extend-ignore-names = ["mcls"]
 
 [tool.ruff.lint.per-file-ignores]
 "mvlogics/*.py" = ["ANN", "PYI"]
-"mvlogics/__init__.py" = ["F401", "PLR2004"]
+"mvlogics/__init__.py" = ["unused-import", "magic-value-comparison"]
 
 [tool.ruff.lint.flake8-bugbear]
 extend-immutable-calls = ["__import__"]

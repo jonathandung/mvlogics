@@ -1,11 +1,11 @@
-
+# ty: ignore[unresolved-attribute]
 import sys
 from decimal import Decimal, getcontext
 from fractions import Fraction
 from weakref import WeakKeyDictionary
 def _weak_cache(name=None):
     def dec(f):
-        def g(self, _=WeakKeyDictionary()): # noqa: B008
+        def g(self, _=WeakKeyDictionary()): # ruff:ignore[function-call-in-default-argument]
             if (r := _.get(self, s := _SlowEnumLogicMeta.MemberContainer._NOT_GENERATED)) is s: _[self] = r = f(self)
             return r
         g.__name__ = name or f.__name__; return g
@@ -80,7 +80,7 @@ class _SlowEnumLogicMeta(_AllLogicMeta):
         super().__setattr__(name, value)
     def __new__(mcls, name, bases, namespace, /, **k):
         if FORBIDDEN.intersection(namespace): raise TypeError('attempted to override forbidden attributes')
-        c = mcls.MemberContainer(namespace['members']); return super().__new__(mcls, name, bases, {'__repr__': _repr_cache(lambda self: f'{type(self).__name__}.{self.name}'), 'value': property(c._MemberContainer__cache.__getitem__), 'name': property(c._MemberContainer__cache2.__getitem__), '__neg__': namespace['__invert__']}|namespace|{'members': c, '__new__': lambda cls, v, /: c.from_name(v) if isinstance(v, str) else c.generate(v)}, **k) # noqa: ARG005
+        c = mcls.MemberContainer(namespace['members']); return super().__new__(mcls, name, bases, {'__repr__': _repr_cache(lambda self: f'{type(self).__name__}.{self.name}'), 'value': property(c._MemberContainer__cache.__getitem__), 'name': property(c._MemberContainer__cache2.__getitem__), '__neg__': namespace['__invert__']}|namespace|{'members': c, '__new__': lambda cls, v, /: c.from_name(v) if isinstance(v, str) else c.generate(v)}, **k) # ruff:ignore[unused-lambda-argument]
 class _FastEnumLogicMeta(_SlowEnumLogicMeta):
     class MemberContainer(_SlowEnumLogicMeta.MemberContainer):
         @_repr_cache
@@ -103,7 +103,7 @@ class _FakeProtocolMeta(type):
                 def __init_subclass__(cls, /, **_): raise TypeError('cannot subclass MemberContainer')
             cls.MemberContainer = MemberContainer; return MemberContainer
         if name in ALL_METHODS:
-            if (r := (c := cls._meth_cache).get(name)) is None: exec('@property\n'*(name == 'value')+f'def {name}(*_): raise NotImplementedError("method {name!r} of protocol {cls.__name__!r} is abstract")', None, c); r = c[name] # noqa: S102
+            if (r := (c := cls._meth_cache).get(name)) is None: exec('@property\n'*(name == 'value')+f'def {name}(*_): raise NotImplementedError("method {name!r} of protocol {cls.__name__!r} is abstract")', None, c); r = c[name] # ruff:ignore[exec-builtin]
             return r
         raise AttributeError(f'class {cls.__name__!r} has no attribute {name!r}')
     def __init_subclass__(mcls, /, **_): raise TypeError('cannot subclass _FakeProtocolMeta')
