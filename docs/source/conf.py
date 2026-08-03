@@ -3,7 +3,7 @@ project = 'mvlogics'
 author = 'Jonathan Dung'
 copyright = '2026 Jonathan Dung' # ruff:ignore[builtin-variable-shadowing]
 version = '0.9'
-release = '0.9.6'
+release = '0.9.7'
 need_sphinx = '9.1.0'
 pygments_style = 'sphinx'
 extensions = ['autoapi.extension', 'notfound.extension', 'sphinx_copybutton', 'sphinx.ext.viewcode']
@@ -17,7 +17,7 @@ if os.getenv('READTHEDOCS') == 'True':
 else:
     html_theme = 'sphinx_book_theme'
     suppress_warnings.append('toc.not_readable')
-html_short_title = 'mvlogics 0.9.6 docs'
+html_short_title = f'mvlogics {release} docs'
 autoapi_dirs = ['../../mvlogics']
 autoapi_file_patterns = ['*.pyi']
 autoapi_root = 'api'

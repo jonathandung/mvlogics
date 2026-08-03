@@ -1,8 +1,14 @@
 blank_issues_enabled: false
 contact_links:
-  - name: GitHub Community Support
-    url: https://github.com/orgs/community/discussions
-    about: Please ask and answer questions here.
-  - name: GitHub Security Bug Bounty
-    url: https://bounty.github.com
-    about: Please report security vulnerabilities here.
+  - name: Documentation
+    url: https://mvlogics.readthedocs.io
+    about: Guides and API reference for mvlogics.
+  - name: Stable documentation
+    url: https://mvlogics.readthedocs.io/en/stable/
+    about: The stable version of the above, built every patch version.
+  - name: Discussions
+    url: https://github.com/jonathandung/mvlogics/discussions
+    about: Ask questions and share your ideas about mvlogics.
+  - name: Creator's profile
+    url: https://github.com/jonathandung
+    about: More of my work, mainly Python projects, can be found here.

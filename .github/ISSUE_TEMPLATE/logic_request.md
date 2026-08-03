@@ -1,7 +1,7 @@
 ---
 name: Logic request
 about: Suggest that a certain logic be implemented
-title: 'Request to add (logic name)'
+title: Request to add (logic name)
 labels: logic-request
 assignees: jonathandung
 ---

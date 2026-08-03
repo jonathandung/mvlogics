@@ -1,7 +1,7 @@
 [[repos]]
 repo = "builtin"
 hooks = [
-  {id = "check-added-large-files", args = ["--maxkb=150"], exclude = '^uv\.lock$'},
+  {id = "check-added-large-files", args = ["--maxkb=50", "--enforce-all"], exclude = '^uv\.lock$'},
   {id = "check-case-conflict"}, {id = "check-illegal-windows-names"}, {id = "check-merge-conflict"},
   {id = "check-toml"}, {id = "check-yaml"}, {id = "end-of-file-fixer"}, {id = "trailing-whitespace"}
 ]
@@ -13,12 +13,12 @@ hooks = [{id = "validate-pyproject"}]
 
 [[repos]]
 repo = "https://github.com/astral-sh/ruff-pre-commit"
-rev = "v0.15.22"
+rev = "v0.16.1"
 hooks = [{id = "ruff-check"}]
 
 [[repos]]
 repo = "https://github.com/astral-sh/ty-pre-commit"
-rev = "v0.0.61"
+rev = "v0.0.65"
 hooks = [{id = "ty", args = ["--isolated", "--no-python-downloads"]}]
 
 [[repos]]

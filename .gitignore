@@ -17,7 +17,6 @@
 .eggs/
 .env*
 .python-version
-.ruff_cache/
 .venv/
 ENV/
 __pycache__/
