@@ -20,41 +20,30 @@ class _SubmoduleMeta(type):
         name = f'{_supermodule_default_name_ if (f := getattr(sys, '_getframemodulename', None)) is None else f(1)}.{name}'
         sys.modules[name] = r = type(sys)(name, namespace.pop('__doc__', None)); return r
 class _AllLogicMeta(type):
-    __defaults, __repr__ = None, _repr_cache(lambda cls: f'{cls.__module__}.{cls.__qualname__}')
+    __defaults, __repr__ = {'__reduce__': lambda self: (type(self), (self.value,)), '__xor__': lambda self, other, /: (self&~other)|(other&~self), 'implies': lambda self, other, /: ~self|other, 'iff': (g := lambda self, other: self.implies(other)&other.implies(self)), 'nand': lambda self, other, /: ~(self&other), 'nor': lambda self, other, /: ~(self|other), 'xnor': g, 'abjunction': lambda self, other, /: ~self.implies(other), 'converse_implies': lambda self, other, /: self|~other, 'converse_abjunction': lambda self, other, /: other&~self, '__bool__': lambda self: self.value == 1, '__pos__': lambda self: self, 'normalized': _normalized_cache(lambda self: Fraction(self.value)), 'from_normalized': classmethod(lambda cls, val: cls(val)), 'from_logic_member': classmethod(lambda cls, member: cls.from_normalized(member.normalized())), 'convert_to': lambda self, cls: cls.from_normalized(self.normalized())}, _repr_cache(lambda cls: f'{cls.__module__}.{cls.__qualname__}')
     def __new__(mcls, name, bases, namespace, /, **k):
         if bases: raise ValueError('logics cannot inherit from anything')
         if not REQUIRED_ATTRS.issubset(namespace): raise TypeError('missing methods for logic class')
-        return super().__new__(mcls, name, bases, mcls.__default_factory__()|namespace, **k)
-    @classmethod
-    def __default_factory__(mcls):
-        if (r := mcls.__defaults) is None: mcls.__defaults = r = {'__reduce__': lambda self: (type(self), (self.value,)), '__xor__': lambda self, other, /: (self&~other)|(other&~self), 'implies': lambda self, other, /: ~self|other, 'iff': (g := lambda self, other: self.implies(other)&other.implies(self)), 'nand': lambda self, other, /: ~(self&other), 'nor': lambda self, other, /: ~(self|other), 'xnor': g, 'abjunction': lambda self, other, /: ~self.implies(other), 'converse_implies': lambda self, other, /: self|~other, 'converse_abjunction': lambda self, other, /: other&~self, '__bool__': lambda self: self.value == 1, '__pos__': lambda self: self, 'normalized': _normalized_cache(lambda self: Fraction(self.value)), 'from_normalized': classmethod(lambda cls, val: cls(val)), 'from_logic_member': classmethod(lambda cls, member: cls.from_normalized(member.normalized())), 'convert_to': lambda self, cls: cls.from_normalized(self.normalized())}
-        return r
+        return super().__new__(mcls, name, bases, mcls.__defaults|namespace, **k)
 class _InfLogicMetaBase(_AllLogicMeta):
+    __defaults = _AllLogicMeta.__defaults|{'members': {}, '__repr__': _repr_cache(lambda self: f'{type(self).__name__}({self.value})')}
     @property
     def T(cls): return cls.from_normalized(Fraction(1))
     @property
     def F(cls): return cls.from_normalized(Fraction())
     verum, falsum = T, F
-    @classmethod
-    def _ret_new_and_value(mcls): raise NotImplementedError
-    @classmethod
-    def __default_factory__(mcls): return _AllLogicMeta.__default_factory__()|{'members': {}, '__repr__': _repr_cache(lambda self: f'{type(self).__name__}({self.value})')}|mcls._ret_new_and_value()
 class _DecimalLogicMeta(_InfLogicMetaBase):
-    @classmethod
-    def _ret_new_and_value(mcls):
-        _ = WeakKeyDictionary()
-        def __new__(cls, val='0', /, _=_):
-            if (v := (c := cls.members).get(d := Decimal(val), None)) is None: c[d] = v = object.__new__(cls); _[v] = d
-            return v
-        return {'__new__': __new__, 'value': property(_.__getitem__)}
+    _ = WeakKeyDictionary()
+    def __new__(cls, val='0', /, _=_):
+        if (v := (c := cls.members).get(d := Decimal(val), None)) is None: c[d] = v = object.__new__(cls); _[v] = d
+        return v
+    __defaults = _InfLogicMetaBase.__defaults|{'__new__': __new__, 'value': property(_.__getitem__)}; del _, __new__
 class _RationalLogicMeta(_InfLogicMetaBase):
-    @classmethod
-    def _ret_new_and_value(mcls):
-        _ = WeakKeyDictionary()
-        def __new__(cls, /, *a, _=_):
-            if (v := (c := cls.members).get(f := Fraction(*a), None)) is None: c[f] = v = object.__new__(cls); _[v] = f
-            return v
-        return {'__new__': __new__, 'value': property(_.__getitem__)}
+    _ = WeakKeyDictionary()
+    def __new__(cls, /, *a, _=_):
+        if (v := (c := cls.members).get(f := Fraction(*a), None)) is None: c[f] = v = object.__new__(cls); _[v] = f
+        return v
+    __defaults = _InfLogicMetaBase.__defaults|{'__new__': __new__, 'value': property(_.__getitem__)}; del _, __new__
 class _SlowEnumLogicMeta(_AllLogicMeta):
     class MemberContainer:
         __cache, __cache2, _NOT_GENERATED = WeakKeyDictionary(), WeakKeyDictionary(), type('NotGenerated', (), {'__new__': _singleton_new, '__repr__': lambda _, /: '<not generated>'})()

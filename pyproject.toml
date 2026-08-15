@@ -59,9 +59,6 @@ ignore-variadic-names = true
 [tool.ruff.lint.mccabe]
 max-complexity = 24
 
-[tool.ruff.lint.pylint]
-allow-dunder-method-names = ["__default_factory__"]
-
 [tool.ruff.format]
 quote-style = "single"
 
