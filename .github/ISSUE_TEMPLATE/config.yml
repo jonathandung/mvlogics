@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://mvlogics.readthedocs.io
+    about: Guides and API reference for mvlogics.
+  - name: Stable documentation
+    url: https://mvlogics.readthedocs.io/en/stable/
+    about: The stable version of the above, built every patch version.
+  - name: Discussions
+    url: https://github.com/jonathandung/mvlogics/discussions
+    about: Ask questions and share your ideas about mvlogics.
+  - name: Creator's profile
+    url: https://github.com/jonathandung
+    about: More of my work, mainly Python projects, can be found here.

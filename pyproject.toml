@@ -1,0 +1,84 @@
+[build-system]
+requires = ["uv_build>=0.12.5"]
+build-backend = "uv_build"
+
+[project]
+name = "mvlogics"
+version = "1.0.1"
+authors = [{name = "Jonathan Dung", email = "jonathandung@yahoo.com"}]
+maintainers = [{name = "Jonathan Dung", email = "jonathandung@yahoo.com"}]
+description = "Multi-valued logics."
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+license-files = ["LICENSE", "AUTHORS.md"]
+keywords = ["mathematical", "object-oriented", "logic", "propositional calculi"]
+classifiers = ["Programming Language :: Python :: 3", "Programming Language :: Python :: 3 :: Only", "Programming Language :: Python :: 3.12", "Programming Language :: Python :: 3.13", "Programming Language :: Python :: 3.14", "Programming Language :: Python :: 3.15", "Programming Language :: Python :: Implementation :: CPython", "Operating System :: OS Independent", "Development Status :: 4 - Beta", "Intended Audience :: Education", "Intended Audience :: Science/Research", "Framework :: Sphinx", "Topic :: Education", "Topic :: Software Development :: Libraries :: Python Modules", "Topic :: Scientific/Engineering :: Mathematics", "Natural Language :: English", "Typing :: Typed"]
+
+[project.urls]
+Homepage = "https://github.com/jonathandung/mvlogics"
+Documentation = "https://mvlogics.readthedocs.io/en/stable/api/index.html"
+Repository = "https://github.com/jonathandung/mvlogics.git"
+Issues = "https://github.com/jonathandung/mvlogics/issues"
+Download = "https://pypi.org/project/mvlogics/#files"
+"Release Notes" = "https://github.com/jonathandung/mvlogics/releases"
+
+[project.optional-dependencies]
+docs = ["sphinx==9.1.0", "furo==2025.12.19", "sphinx-book-theme==1.4.0", "sphinx-copybutton==0.5.2", "sphinx-notfound-page==1.1.0", "sphinx-autoapi==3.8.0", "sphinx-lint==1.0.2", "myst-parser==5.1.0"]
+
+[tool.ruff]
+target-version = "py312"
+
+[tool.ruff.lint]
+ignore = ["missing-whitespace-around-arithmetic-operator", "missing-whitespace-around-bitwise-or-shift-operator", "missing-whitespace-around-parameter-equals", "too-few-spaces-before-inline-comment", "blank-line-between-methods", "blank-lines-top-level", "blank-lines-after-function-or-class", "blank-lines-before-nested-definition", "line-too-long", "multiple-statements-on-one-line-colon", "multiple-statements-on-one-line-semicolon", "ambiguous-variable-name", "non-ascii-name", "non-ascii-import-name", "docstring-in-stub", "mutable-class-default", "non-empty-init-module", "raise-vanilla-args"]
+select = ["A", "ARG", "ANN", "B", "blind-except", "prohibited-trailing-comma", "C4", "complex-structure", "E", "dot-format-in-exception", "commented-out-code", "EXE", "F", "line-contains-todo", "static-join-to-f-string", "FURB", "G", "ISC", "LOG", "invalid-first-argument-name-for-class-method", "invalid-first-argument-name-for-method", "N81", "PERF", "PIE", "blanket-noqa", "PL", "PYI", "RET", "unnecessary-paren-on-raise-exception", "RUF", "S", "SIM", "SLOT", "debugger", "print", "TRY", "UP", "W", "YTT"]
+preview = true
+typing-extensions = false
+
+[tool.ruff.lint.pep8-naming]
+extend-ignore-names = ["mcls"]
+
+[tool.ruff.lint.per-file-ignores]
+"mvlogics/*.py" = ["ANN", "PYI"]
+"mvlogics/__init__.py" = ["unused-import", "magic-value-comparison"]
+
+[tool.ruff.lint.flake8-bugbear]
+extend-immutable-calls = ["__import__"]
+
+[tool.ruff.lint.flake8-quotes]
+inline-quotes = "single"
+multiline-quotes = "single"
+docstring-quotes = "single"
+
+[tool.ruff.lint.flake8-annotations]
+mypy-init-return = true
+
+[tool.ruff.lint.flake8-unused-arguments]
+ignore-variadic-names = true
+
+[tool.ruff.lint.mccabe]
+max-complexity = 24
+
+[tool.ruff.format]
+quote-style = "single"
+
+[tool.ty.analysis]
+respect-type-ignore-comments = false
+
+[tool.ty.environment]
+python-version = "3.12"
+python-platform = "all"
+
+[tool.ty.rules]
+unused-ignore-comment = "error"
+
+[tool.ty.src]
+include = ["mvlogics"]
+exclude = ["mvlogics/__init__.py"]
+
+[tool.uv]
+required-version = ">=0.12.5"
+
+[tool.uv.build-backend]
+module-name = "mvlogics"
+module-root = ""
