@@ -17,11 +17,15 @@ jobs:
       with:
         persist-credentials: false
         ref: ${{github.event.pull_request.head.sha || github.sha}}
-    - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9
+    - uses: astral-sh/setup-uv@ae62891fec2bb8e7d6c99fc78c9fec3a63790f8d
       with:
         enable-cache: false
     - run: uvx ruff check --output-format github
     - run: uvx ty check --output-format github
     - run: uv audit --preview-features audit-command
     - uses: zizmorcore/zizmor-action@3dc1ecc9bcb9e94e9b2c709687979e1298497054
+    - uses: DavidAnson/markdownlint-cli2-action@21c1be1b93ad9ed58fa840aacc3f279cde2a72ff
+      with:
+        globs: '**/*.md'
     - run: uv build
+    timeout-minutes: 5

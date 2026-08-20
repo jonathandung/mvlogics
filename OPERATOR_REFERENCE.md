@@ -29,7 +29,7 @@ Note that the symbols shown are the operators as you would invoke them in Python
 - ``consensus``: a if a is equivalent to b; the other input if an input is uncertain, uncertain otherwise
 
 ## Truth table for boolean logic
-
+<!--markdownlint-disable-next-line MD013-->
 | `P` | `Q` | `P&Q` | `P.__or__(Q)` | `~P` | `P.implies(Q)` | `P.iff(Q)` | `P.nor(Q)` | `P.nand(Q)` | `P.abjunction(Q)` | `P.converse_implies(Q)` | `P.converse_abjunction(Q)` |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 | T | T | T | T | F | T | T | F | F | F | T | F |
