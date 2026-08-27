@@ -27,8 +27,8 @@ logics offer possibilities in between, the most characteristic example being a v
   :caption: Links
   :hidden:
 
-  mvlogics @ PyPI <https://pypi.org/p/mvlogics/>
-  mvlogics @ GitHub <https://github.com/jonathandung/mvlogics/>
+  mvlogics @ PyPI <https://pypi.org/p/mvlogics>
+  mvlogics @ GitHub <https://github.com/jonathandung/mvlogics>
   Issue tracker <https://github.com/jonathandung/mvlogics/issues>
   PDF documentation <https://media.readthedocs.org/pdf/mvlogics/latest/mvlogics.pdf>
   .zip archive of pages <https://mvlogics.readthedocs.io/_/downloads/en/latest/htmlzip>
