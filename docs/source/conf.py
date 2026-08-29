@@ -1,22 +1,15 @@
-import os
 project = 'mvlogics'
 author = 'Jonathan Dung'
-copyright = '2026 Jonathan Dung' # ruff:ignore[builtin-variable-shadowing]
+copyright = '2026 Jonathan Dung' # ruff: ignore[builtin-variable-shadowing]
 version = '1.0'
-release = '1.0.1'
+release = '1.0.2'
 need_sphinx = '9.1.0'
 pygments_style = 'sphinx'
-extensions = ['autoapi.extension', 'notfound.extension', 'sphinx_copybutton', 'sphinx.ext.viewcode']
+extensions = ['autoapi.extension', 'notfound.extension', 'sphinx_copybutton', 'sphinx.ext.viewcode', 'sphinx.ext.intersphinx', 'myst_parser']
 default_role = 'py:obj'
-suppress_warnings = ['autoapi.python_import_resolution']
-if os.getenv('READTHEDOCS') == 'True':
-    html_theme = 'furo'
-    html_theme_options = {'top_of_page_buttons': ['view', 'edit'], 'source_repository': 'https://github.com/jonathandung/mvlogics', 'source_branch': 'main', 'source_directory': 'docs/source/'}
-    source_suffix = {'.rst': 'restructuredtext', '.md': 'markdown'}
-    extensions.append('myst_parser')
-else:
-    html_theme = 'sphinx_book_theme'
-    suppress_warnings.append('toc.not_readable')
+html_theme = 'furo'
+html_theme_options = {'top_of_page_buttons': ['view', 'edit'], 'source_repository': 'https://github.com/jonathandung/mvlogics', 'source_branch': 'main', 'source_directory': 'docs/source/'}
+source_suffix = {'.rst': 'restructuredtext', '.md': 'markdown'}
 html_short_title = f'mvlogics {release} docs'
 autoapi_dirs = ['../../mvlogics']
 autoapi_file_patterns = ['*.pyi']

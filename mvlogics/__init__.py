@@ -1,5 +1,5 @@
 from .base import ALL_LOGICS, ALL_LOGICS_TUPLE, ALL_METHODS, EXTENSION_METHODS, FAKE_PROTOCOLS, FAKE_PROTOCOLS_TUPLE, FORBIDDEN, MIXIN_METHODS, RECOMMENDED_METHODS, REQUIRED_ATTRS, Decimal, Fraction, _AllLogicMeta, _DecimalLogicMeta, _FakeProtocolMeta, _FastEnumLogicMeta, _RationalLogicMeta, _singleton_new, _SubmoduleMeta, _all as __all__
-__version__ = '1.0.1'
+__version__ = '1.0.2'
 def is_logic(typ): return isinstance(typ, _AllLogicMeta)
 def is_logic_member(obj): return is_logic(type(obj))
 def is_builtin_logic(typ): return typ.__name__ in ALL_LOGICS and typ.__module__ == __name__
@@ -49,11 +49,11 @@ def _check_names(n, k, p):
     return k, iter(n or map((p+'%s').__mod__, range(k)))
 def _to_members(K, N): return {x: Fraction(i, K-1) for i, x in enumerate(N)}
 def gödel_logic(*names, k=None, prefix='x_', clsname=None): K, N = _check_names(names, k, prefix); return _FastEnumLogicMeta(clsname or f'G{K}', (), {'members': _to_members(K, N), '__and__': lambda self, other, /: type(self)(min(self.value, other.value)), '__or__': lambda self, other, /: type(self)(max(self.value, other.value)), '__invert__': lambda self: type(self)(self.value == 0), 'implies': lambda self, other, /: type(self)(1) if self.value <= other.value else other, '__doc__': f"Godel's {K}-valued logic. See https://plato.stanford.edu/entries/logic-manyvalued/#GodLog."})
-G3, SmT = gödel_logic('F', 'NF', 'T'), gödel_logic('F', 'NF', 'T', clsname='SmT')
+
 def łukasiewicz_logic(*names, k=None, prefix='x_', clsname=None): K, N = _check_names(names, k, prefix); return _FastEnumLogicMeta(clsname or f'L{K}', (), {'members': _to_members(K, N), 'implies': (f := lambda self, other, /: type(self)(1+min(0, other.value-self.value))), '__invert__': lambda self: type(self)(1-self.value), '__and__': lambda self, other, /: f(f(self, other), other), '__or__': lambda self, other, /: ~(~self&~other), 'strong_disjunction': lambda self, other, /: f(~self, other), 'strong_conjunction': lambda self, other, /: ~f(self, ~other), 'diamond': (d := lambda self: f(~self, self)), 'box': lambda self: ~d(~self), 'doubtful': lambda self: self.iff(~self)})
-L3 = łukasiewicz_logic('F', 'U', 'T')
+
 def post_logic(*names, k=None, prefix='x_', clsname=None): K, N = _check_names(names, k, prefix); U = Fraction(1, K-1); return _FastEnumLogicMeta(clsname or f'P{K}', (), {'members': _to_members(K, N), '__invert__': lambda self: type(self)(v-U if (v := self.value) else 1), '__and__': lambda self, other, /: type(self)(min(self.value, other.value)), '__or__': lambda self, other, /: type(self)(max(self.value, other.value))})
-P3 = post_logic('F', 'U', 'T')
+G3, L3, P3 = gödel_logic('F', 'NF', 'T'), łukasiewicz_logic('F', 'U', 'T'), post_logic('F', 'U', 'T')
 class B4(metaclass=_FastEnumLogicMeta):
     members = {'F': 0, 'N': 1, 'B': 2, 'T': 3}
     def __invert__(self): return self if self in {__class__.B, __class__.N} else type(self)(3-self.value)

@@ -2,35 +2,34 @@
 '''Implementations of various logics, not necessarily with two truth values.
 A logic is a propositional calculus, with an example being the familiar logical calculus of Aristotle's, where the only truth values are
 T (True, verum) and F (False, falsum) and the law of the excluded middle (that is, p | ~p for all propositions p) holds.
-Logics do not support subclassing, same as the built-in type ``bool``.
-Members of all classes in this module but ``Unit`` are lazily generated to avoid significant memory overhead.'''
+Logics do not support subclassing, same as the built-in type :class:`bool`.'''
 from collections.abc import Callable
 from decimal import Decimal
 from fractions import Fraction
 from typing import Any, ClassVar, Final, Literal, NoReturn, Self, TypeGuard, final, overload
 from .protocols import DecimalLogicBase, GödelLogic, LogicBase, MemberlessLogicBase, PostLogic, RationalLogicBase, RationalTNormLogic, StrictLogicBase, TNormLogic, ŁukasiewiczLogic
-__all__ = 'ALL_LOGICS', 'ALL_LOGICS_TUPLE', 'ALL_METHODS', 'B4', 'BI3', 'EXTENSION_METHODS', 'FAKE_PROTOCOLS', 'FAKE_PROTOCOLS_TUPLE', 'FORBIDDEN', 'G3', 'K3', 'L3', 'LP', 'MIXIN_METHODS', 'NP', 'P3', 'RECOMMENDED_METHODS', 'REQUIRED_ATTRS', 'RM3', 'Π', 'Boolean', 'G_aleph_0', 'G_inf', 'L_aleph_0', 'L_inf', 'NP_aleph_0', 'SmT', 'Unit', 'Π_aleph_0', 'convert', 'decimal_logic_from_implication', 'decimal_t_norm_logic', 'gödel_logic', 'is_builtin_logic', 'is_builtin_logic_member', 'is_logic', 'is_logic_member', 'logic_from_implication', 'post_logic', 'rational_logic_from_implication', 'rational_t_norm_logic', 't_norm_logic', 'łukasiewicz_logic'
+__all__ = 'ALL_LOGICS', 'ALL_LOGICS_TUPLE', 'ALL_METHODS', 'B4', 'BI3', 'EXTENSION_METHODS', 'FAKE_PROTOCOLS', 'FAKE_PROTOCOLS_TUPLE', 'FORBIDDEN', 'G3', 'K3', 'L3', 'LP', 'MIXIN_METHODS', 'NP', 'P3', 'RECOMMENDED_METHODS', 'REQUIRED_ATTRS', 'RM3', 'Π', 'Boolean', 'G_aleph_0', 'G_inf', 'L_aleph_0', 'L_inf', 'NP_aleph_0', 'Unit', 'Π_aleph_0', 'convert', 'decimal_logic_from_implication', 'decimal_t_norm_logic', 'gödel_logic', 'is_builtin_logic', 'is_builtin_logic_member', 'is_logic', 'is_logic_member', 'logic_from_implication', 'post_logic', 'rational_logic_from_implication', 'rational_t_norm_logic', 't_norm_logic', 'łukasiewicz_logic'
 __version__: Final[str]
-REQUIRED_ATTRS: frozenset[str]
+REQUIRED_ATTRS: Final[frozenset[str]]
 '''The method names all logic classes must have.'''
-RECOMMENDED_METHODS: frozenset[str]
+RECOMMENDED_METHODS: Final[frozenset[str]]
 '''The method names logic classes are recommended to have if suitable, corresponding to less common logical operations.'''
-MIXIN_METHODS: frozenset[str]
+MIXIN_METHODS: Final[frozenset[str]]
 '''The method names of methods that will be provided automatically to logic base classes.'''
-EXTENSION_METHODS: frozenset[str]
+EXTENSION_METHODS: Final[frozenset[str]]
 '''The method names logic classes may have for specialized use cases, including possibly niche fuzzy and modal logic operators.'''
-FORBIDDEN: frozenset[str]
+FORBIDDEN: Final[frozenset[str]]
 '''Method/property names logic classes are forbidden from implementing.'''
-ALL_METHODS: frozenset[str]
+ALL_METHODS: Final[frozenset[str]]
 '''Equivalent to ``RECOMMEDED_METHODS | REQUIRED_ATTRS | MIXIN_METHODS | EXTENSION_METHODS``.'''
-FAKE_PROTOCOLS: frozenset[str]
-'''The names of the 'protocols' defined in the ``protocols`` submodule, which support instance and subclass testing.'''
-ALL_LOGICS: frozenset[str]
+FAKE_PROTOCOLS: Final[frozenset[str]]
+'''The names of the 'protocols' defined in the :mod:`~mvlogics.protocols` submodule, which support instance and subclass testing.'''
+ALL_LOGICS: Final[frozenset[str]]
 '''The names of all built-in logics defined in this module.'''
-FAKE_PROTOCOLS_TUPLE: tuple[str, ...]
-'''``FAKE_PROTOCOLS`` as a tuple with a canonical ordering.'''
-ALL_LOGICS_TUPLE: tuple[str, ...]
-'''``ALL_LOGICS`` as a tuple with a canonical ordering.'''
+FAKE_PROTOCOLS_TUPLE: Final[tuple[str, ...]]
+''':const:`FAKE_PROTOCOLS` as a tuple with a canonical ordering.'''
+ALL_LOGICS_TUPLE: Final[tuple[str, ...]]
+''':const:`ALL_LOGICS` as a tuple with a canonical ordering.'''
 def convert[L: MemberlessLogicBase[Any]](member: MemberlessLogicBase[Any], cls: type[L]) -> L: '''Convert a logic member ``member`` to a member of another logic class ``cls``.'''
 def is_logic(typ: type) -> TypeGuard[type[MemberlessLogicBase[Any]]]: '''Return whether ``typ`` is a logic class.'''
 def is_logic_member(obj: object) -> TypeGuard[MemberlessLogicBase[Any]]: '''Return whether ``obj`` is a logic member.'''
@@ -52,7 +51,7 @@ class Unit(MemberlessLogicBase[int]):
 @final
 class Boolean(LogicBase[bool]):
     '''Boolean or Aristotelian logic, where the law of the excluded middle holds.
-    Simply wraps the built-in class ``bool`` to satisfy the interface.'''
+    Simply wraps the built-in class :class:`bool` to satisfy the interface.'''
     T: ClassVar[Self]
     F: ClassVar[Self]
     def __and__(self, other: Self, /) -> Self: ...
@@ -118,14 +117,8 @@ class B4(StrictLogicBase[int]):
     def gullibility(self, other: Self, /) -> Self: ...
     def consensus(self, other: Self, /) -> Self: ...
 @final
-class SmT(GödelLogic):
-    '''Smetanov logic, also known as the logic of here and there and Gödel G3 logic. Introduced by Arend Heyting in 1930 to study intuitionistic logic, it is a three-valued intermediate logic where the intermediate value can be understood as 'not false'.'''
-    T: ClassVar[Self]
-    NF: ClassVar[Self]
-    F: ClassVar[Self]
-@final
 class G3(GödelLogic):
-    '''Alias to ``SmT``. A three-valued logic of Gödel's, also known as Smetanov logic and the logic of here and there. Belongs to a larger family of 'Gödel' logics G_k with truth values 0, 1/(k-1), 2/(k-1), ..., (k-2)/(k-1), 1, with 1 designated as a 'true' truth value.'''
+    '''Smetanov logic, also known as the logic of here and there and Gödel G3 logic. Introduced by Arend Heyting in 1930 to study intuitionistic logic, it is a three-valued intermediate logic where the intermediate value can be understood as 'not false'.'''
     T: ClassVar[Self]
     NF: ClassVar[Self]
     F: ClassVar[Self]
@@ -197,7 +190,7 @@ def logic_from_implication(*, name: str, rational: Literal[True], **additional: 
 def logic_from_implication(*, rational: Literal[False]=..., **additional: object) -> Callable[[Callable[[Decimal, Decimal], Decimal]], type[DecimalLogicBase]]: ...
 @overload
 def logic_from_implication(*, rational: Literal[True], **additional: object) -> Callable[[Callable[[Fraction, Fraction], Fraction]], type[RationalLogicBase]]:  '''A decorator factory whose products return t-norm logic classes given the strong conjunction operator, given whether the members should be constrained to rational numbers.'''
-def decimal_t_norm_logic(strong_conjunctionf: Callable[[Decimal, Decimal], Decimal]) -> type[TNormLogic]: '''Version of ``t_norm_logic`` specific to decimals.'''
-def rational_t_norm_logic(strong_conjunctionf: Callable[[Fraction, Fraction], Fraction]) -> type[RationalTNormLogic]: '''Version of ``t_norm_logic`` specific to fractions.'''
-def decimal_logic_from_implication(impliesf: Callable[[Decimal, Decimal], Decimal]) -> type[DecimalLogicBase]: '''Version of ``logic_from_implication`` specific to decimals.'''
-def rational_logic_from_implication(impliesf: Callable[[Fraction, Fraction], Fraction]) -> type[RationalLogicBase]: '''Version of ``logic_from_implication`` specific to fractions.'''
+def decimal_t_norm_logic(strong_conjunctionf: Callable[[Decimal, Decimal], Decimal]) -> type[TNormLogic]: '''Version of :func:`t_norm_logic` specific to decimals.'''
+def rational_t_norm_logic(strong_conjunctionf: Callable[[Fraction, Fraction], Fraction]) -> type[RationalTNormLogic]: '''Version of :func:`t_norm_logic` specific to fractions.'''
+def decimal_logic_from_implication(impliesf: Callable[[Decimal, Decimal], Decimal]) -> type[DecimalLogicBase]: '''Version of :func:`logic_from_implication` specific to decimals.'''
+def rational_logic_from_implication(impliesf: Callable[[Fraction, Fraction], Fraction]) -> type[RationalLogicBase]: '''Version of :func:`logic_from_implication` specific to fractions.'''

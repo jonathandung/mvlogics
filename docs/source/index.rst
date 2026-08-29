@@ -29,9 +29,10 @@ logics offer possibilities in between, the most characteristic example being a v
 
   mvlogics @ PyPI <https://pypi.org/p/mvlogics>
   mvlogics @ GitHub <https://github.com/jonathandung/mvlogics>
+  GitHub pages <https://jonathandung.github.io>
   Issue tracker <https://github.com/jonathandung/mvlogics/issues>
   PDF documentation <https://media.readthedocs.org/pdf/mvlogics/latest/mvlogics.pdf>
-  .zip archive of pages <https://mvlogics.readthedocs.io/_/downloads/en/latest/htmlzip>
+  .zip archive of pages <https://mvlogics.readthedocs.io/_/downloads/en/latest/htmlzip/>
 
 .. note:: This project is being actively developed and maintained. It currently only supports CPython 3.12 or above.
 
