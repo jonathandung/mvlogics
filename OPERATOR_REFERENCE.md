@@ -6,27 +6,27 @@ Note that the symbols shown are the operators as you would invoke them in Python
 
 ## Shared by all logics
 
-- ``__and__`` (&): And
-- ``__or__`` (|): Or
-- ``__invert__`` (~), ``__neg__`` (-): Not
-- ``__pos__`` (+): Identity
-- ``implies``: Implication
-- ``iff``, ``xnor``: Biconditional
-- ``nor``: Neither
-- ``nand``: Sheffer stroke
-- ``abjunction``: Nonimplication
-- ``converse_implies``: Converse implication
-- ``converse_abjunction``: Converse nonimplication
+- `__and__` (&): And
+- `__or__` (|): Or
+- `__invert__` (~), `__neg__` (-): Not
+- `__pos__` (+): Identity
+- `implies`: Implication
+- `iff`, `xnor`: Biconditional
+- `nor`: Neither
+- `nand`: Sheffer stroke
+- `abjunction`: Nonimplication
+- `converse_implies`: Converse implication
+- `converse_abjunction`: Converse nonimplication
 
 ## Optional
 
-- ``strong_conjunction``: Strong conjunction; not (a implies (not b))
-- ``strong_disjunction``: Strong disjunction; (not a) implies b
-- ``diamond``: Modal diamond; (not a) implies a
-- ``box``: Modal box; not diamond(not a)
-- ``doubtful``: a equivalent to (not a)
-- ``gullibility``: a if a is equivalent to b, uncertain otherwise
-- ``consensus``: a if a is equivalent to b; the other input if an input is uncertain, uncertain otherwise
+- `a.strong_conjunction(b)`: Strong conjunction; `not a.implies(not b)`
+- `a.strong_disjunction(b)`: Strong disjunction; `(not a).implies(b)`
+- `a.diamond()`: Modal diamond; `(not a).implies(a)`
+- `a.box()`: Modal box; `not diamond(not a)`
+- `a.doubtful()`: `a.iff(not a)`
+- `a.gullibility(b)`: a if a is equivalent to b, uncertain otherwise
+- `a.consensus(b)`: a if a is equivalent to b; the other input if an input is uncertain; uncertain otherwise
 
 ## Truth table for boolean logic
 <!--markdownlint-disable-next-line MD013 MD033-->

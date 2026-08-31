@@ -1,8 +1,8 @@
 @echo off
 pushd %~dp0
 if "%SPHINXBUILD%" == "" set SPHINXBUILD=sphinx-build
-if "%1" == "" %SPHINXBUILD% -M help source build %SPHINXOPTS% %O%
-%SPHINXBUILD% >nul 2>nul
+if "%1" == "" "%SPHINXBUILD%" -M help source build %SPHINXOPTS% %O%
+"%SPHINXBUILD%" >nul 2>nul
 if errorlevel 9009 (
 	echo.
 	echo.Command 'sphinx-build' not found. Make sure you have Sphinx installed,
@@ -14,5 +14,5 @@ if errorlevel 9009 (
 	echo.
 	exit /b 1
 )
-%SPHINXBUILD% -M %1 source build %SPHINXOPTS% %O%
+"%SPHINXBUILD%" -M %1 source build %SPHINXOPTS% %O%
 popd
