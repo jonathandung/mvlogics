@@ -7,8 +7,9 @@ build:
     python: latest
   jobs:
     post_create_environment:
+      - python3 -m pip install -U pip -e .
+      - python3 -m pip install --group docs
       - curl -Z -o docs/source/ai-use.md https://raw.githubusercontent.com/jonathandung/.github/main/AI_USAGE_POLICY.md -o docs/source/conduct.md https://raw.githubusercontent.com/jonathandung/.github/main/CODE_OF_CONDUCT.md -o docs/source/contributing.md https://raw.githubusercontent.com/jonathandung/.github/main/CONTRIBUTING.md -o docs/source/governance.md https://raw.githubusercontent.com/jonathandung/.github/main/GOVERNANCE.md
       - cp CUSTOM_LOGIC.md docs/source/custom-logic.md
       - cp OPERATOR_REFERENCE.md docs/source/operators.md
 formats: [htmlzip, pdf]
-python: {install: [{path: ., extra_requirements: [docs]}]}
