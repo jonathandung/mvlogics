@@ -1,5 +1,5 @@
 [build-system]
-requires = ["uv_build>=0.12.10"]
+requires = ["uv_build>=0.12.21"]
 build-backend = "uv_build"
 
 [dependency-groups]
@@ -16,7 +16,7 @@ requires-python = ">=3.12"
 license = "MIT"
 license-files = ["LICENSE", "AUTHORS.md"]
 keywords = ["mathematical", "object-oriented", "logic", "propositional calculi"]
-classifiers = ["Programming Language :: Python :: 3", "Programming Language :: Python :: 3 :: Only", "Programming Language :: Python :: 3.12", "Programming Language :: Python :: 3.13", "Programming Language :: Python :: 3.14", "Programming Language :: Python :: 3.15", "Programming Language :: Python :: Implementation :: CPython", "Operating System :: OS Independent", "Development Status :: 5 - Production/Stable", "Intended Audience :: Education", "Intended Audience :: Science/Research", "Framework :: Sphinx", "Topic :: Education", "Topic :: Software Development :: Libraries :: Python Modules", "Topic :: Scientific/Engineering :: Mathematics", "Natural Language :: English", "Typing :: Typed"]
+classifiers = ["Programming Language :: Python :: 3", "Programming Language :: Python :: 3 :: Only", "Programming Language :: Python :: 3.12", "Programming Language :: Python :: 3.13", "Programming Language :: Python :: 3.14", "Programming Language :: Python :: 3.15", "Programming Language :: Python :: 3.16", "Programming Language :: Python :: Implementation :: CPython", "Operating System :: OS Independent", "Development Status :: 5 - Production/Stable", "Intended Audience :: Education", "Intended Audience :: Science/Research", "Framework :: Sphinx", "Topic :: Education", "Topic :: Software Development :: Libraries :: Python Modules", "Topic :: Scientific/Engineering :: Mathematics", "Natural Language :: English", "Typing :: Typed"]
 
 [project.urls]
 Homepage = "https://github.com/jonathandung/mvlogics"
@@ -27,7 +27,7 @@ Download = "https://pypi.org/project/mvlogics/#files"
 "Release Notes" = "https://github.com/jonathandung/mvlogics/releases"
 
 [tool.ruff]
-required-version = ">=0.16.6"
+required-version = ">=0.16.9"
 target-version = "py312"
 
 [tool.ruff.lint]
@@ -57,9 +57,6 @@ mypy-init-return = true
 [tool.ruff.lint.flake8-unused-arguments]
 ignore-variadic-names = true
 
-[tool.ruff.lint.mccabe]
-max-complexity = 24
-
 [tool.ruff.format]
 quote-style = "single"
 
@@ -78,7 +75,7 @@ include = ["mvlogics"]
 exclude = ["mvlogics/__init__.py"]
 
 [tool.uv]
-required-version = ">=0.12.10"
+required-version = ">=0.12.21"
 
 [tool.uv.build-backend]
 module-name = "mvlogics"

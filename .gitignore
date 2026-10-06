@@ -16,7 +16,6 @@
 .Python
 .eggs/
 .env*
-.python-version
 .venv/
 ENV/
 __pycache__/

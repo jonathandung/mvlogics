@@ -20,9 +20,9 @@ EXTENSION_METHODS: Final[frozenset[str]]
 FORBIDDEN: Final[frozenset[str]]
 '''Method/property names logic classes are forbidden from implementing.'''
 ALL_METHODS: Final[frozenset[str]]
-'''Equivalent to ``RECOMMEDED_METHODS | REQUIRED_ATTRS | MIXIN_METHODS | EXTENSION_METHODS``.'''
+'''``RECOMMEDED_METHODS | REQUIRED_ATTRS | MIXIN_METHODS | EXTENSION_METHODS``'''
 FAKE_PROTOCOLS: Final[frozenset[str]]
-'''The names of the 'protocols' defined in the :mod:`~mvlogics.protocols` submodule, which support instance and subclass testing.'''
+'''The names of the protocols defined in the :mod:`~mvlogics.protocols` submodule, which support instance and subclass testing.'''
 ALL_LOGICS: Final[frozenset[str]]
 '''The names of all built-in logics defined in this module.'''
 FAKE_PROTOCOLS_TUPLE: Final[tuple[str, ...]]
