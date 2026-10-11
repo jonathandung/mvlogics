@@ -71,7 +71,7 @@ class _SlowEnumLogicMeta(_AllLogicMeta):
         if FORBIDDEN.intersection(namespace): raise TypeError('attempted to override forbidden attributes')
         c = mcls.MemberContainer(namespace['members']); return super().__new__(mcls, name, bases, {'__repr__': _repr_cache(lambda self: f'{type(self).__name__}.{self.name}'), 'value': property(c._MemberContainer__cache.__getitem__), 'name': property(c._MemberContainer__cache2.__getitem__), '__neg__': namespace['__invert__']}|namespace|{'members': c, '__new__': lambda cls, v, /: c.from_name(v) if isinstance(v, str) else c.generate(v)}, **k) # ruff:ignore[unused-lambda-argument]
 class _FastEnumLogicMeta(_SlowEnumLogicMeta):
-    class MemberContainer(_SlowEnumLogicMeta.MemberContainer):
+    class MemberContainer(_SlowEnumLogicMeta.MemberContainer):  # ty: ignore[invalid-attribute-override]
         @_repr_cache
         def __repr__(self): return f'({(n := self.typ.__name__)}.{f", {n}.".join(self.names)})'
 class _FakeProtocolMeta(type):

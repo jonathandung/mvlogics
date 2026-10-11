@@ -1,6 +1,6 @@
 # Support Guidelines
 
-Thank you for using mvlogics! This document outlines how to get help with this project.
+Thank you for using `mvlogics`! This document outlines how to get help with this project.
 
 Before jumping to seek support, do skim through [the readme](https://github.com/jonathandung/mvlogics#mvlogics).
 
