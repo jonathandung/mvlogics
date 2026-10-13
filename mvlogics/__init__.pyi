@@ -6,8 +6,8 @@ from collections.abc import Callable
 from decimal import Decimal
 from fractions import Fraction
 from typing import Any, ClassVar, Final, Literal, NoReturn, Self, TypeGuard, final, overload
-from .protocols import DecimalLogicBase, GödelLogic, LogicBase, MemberlessLogicBase, PostLogic, RationalLogicBase, RationalTNormLogic, StrictLogicBase, TNormLogic, ŁukasiewiczLogic
-__all__ = 'ALL_LOGICS', 'ALL_LOGICS_TUPLE', 'ALL_METHODS', 'B4', 'BI3', 'EXTENSION_METHODS', 'FAKE_PROTOCOLS', 'FAKE_PROTOCOLS_TUPLE', 'FORBIDDEN', 'G3', 'K3', 'L3', 'LP', 'MIXIN_METHODS', 'NP', 'P3', 'RECOMMENDED_METHODS', 'REQUIRED_ATTRS', 'RM3', 'Boolean', 'G_aleph_0', 'G_inf', 'L_aleph_0', 'L_inf', 'NP_aleph_0', 'P', 'P_aleph_0', 'Unit', 'convert', 'decimal_logic_from_implication', 'decimal_t_norm_logic', 'gödel_logic', 'is_builtin_logic', 'is_builtin_logic_member', 'is_logic', 'is_logic_member', 'logic_from_implication', 'post_logic', 'rational_logic_from_implication', 'rational_t_norm_logic', 't_norm_logic', 'łukasiewicz_logic'
+from .protocols import DecimalLogicBase, GodelLogic, LogicBase, MemberlessLogicBase, PostLogic, RationalLogicBase, RationalTNormLogic, StrictLogicBase, TNormLogic, LukasiewiczLogic
+__all__ = 'ALL_LOGICS', 'ALL_LOGICS_TUPLE', 'ALL_METHODS', 'B4', 'BI3', 'EXTENSION_METHODS', 'FAKE_PROTOCOLS', 'FAKE_PROTOCOLS_TUPLE', 'FORBIDDEN', 'G3', 'K3', 'L3', 'LP', 'MIXIN_METHODS', 'NP', 'P3', 'RECOMMENDED_METHODS', 'REQUIRED_ATTRS', 'RM3', 'Boolean', 'G_aleph_0', 'G_inf', 'L_aleph_0', 'L_inf', 'NP_aleph_0', 'P', 'P_aleph_0', 'Unit', 'convert', 'decimal_logic_from_implication', 'decimal_t_norm_logic', 'godel_logic', 'is_builtin_logic', 'is_builtin_logic_member', 'is_logic', 'is_logic_member', 'logic_from_implication', 'lukasiewicz_logic', 'post_logic', 'rational_logic_from_implication', 'rational_t_norm_logic', 't_norm_logic'
 __version__: Final[str]
 REQUIRED_ATTRS: Final[frozenset[str]]
 '''The method names all logic classes must have.'''
@@ -116,14 +116,14 @@ class B4(StrictLogicBase[int]):
     def gullibility(self, other: Self, /) -> Self: ...
     def consensus(self, other: Self, /) -> Self: ...
 @final
-class G3(GödelLogic):
-    '''Smetanov logic, also known as the logic of here and there and Gödel G3 logic. Introduced by Arend Heyting in 1930 to study intuitionistic logic, it is a three-valued intermediate logic where the intermediate value can be understood as 'not false'.'''
+class G3(GodelLogic):
+    '''Smetanov logic, also known as the logic of here and there and Godel G3 logic. Introduced by Arend Heyting in 1930 to study intuitionistic logic, it is a three-valued intermediate logic where the intermediate value can be understood as 'not false'.'''
     T: ClassVar[Self]
     NF: ClassVar[Self]
     F: ClassVar[Self]
 @final
-class L3(ŁukasiewiczLogic):
-    '''Jan Łukasiewicz's three-valued logic; the truth values for 0, 1/2, 1 are called F, U and T respectively.'''
+class L3(LukasiewiczLogic):
+    '''Jan Lukasiewicz's three-valued logic; the truth values for 0, 1/2, 1 are called F, U and T respectively.'''
     T: ClassVar[Self]
     U: ClassVar[Self]
     F: ClassVar[Self]
@@ -136,10 +136,10 @@ class P3(PostLogic):
 @final
 class P(DecimalLogicBase): '''Product logic, with truth values between 0 and 1. For precision, please pass in a string (e.g. '3.14159' instead of 3.14159) to the constructor; however, passing an int, float or decimal.Decimal instance is also acceptable.'''
 @final
-class G_inf(DecimalLogicBase): '''Gödel's infinite-valued logic, with real numbers between 0 and 1 as truth values.'''
+class G_inf(DecimalLogicBase): '''Godel's infinite-valued logic, with real numbers between 0 and 1 as truth values.'''
 @final
 class L_inf(DecimalLogicBase):
-    '''Łukasiewicz's infinite-valued logic, with real numbers between 0 and 1 as truth values.'''
+    '''Lukasiewicz's infinite-valued logic, with real numbers between 0 and 1 as truth values.'''
     def strong_disjunction(self, other: Self, /) -> Self: ...
     def strong_conjunction(self, other: Self, /) -> Self: ...
     def diamond(self) -> Self: ...
@@ -150,10 +150,10 @@ class NP(TNormLogic): '''A t-norm logic with the nilpotent minimum norm as the i
 @final
 class P_aleph_0(RationalLogicBase): '''Product logic, with rational numbers between 0 and 1 as truth values. Pass in what Fraction takes to the constructor.'''
 @final
-class G_aleph_0(RationalLogicBase): '''Gödel's infinite-valued logic, with rational numbers between 0 and 1 as truth values.'''
+class G_aleph_0(RationalLogicBase): '''Godel's infinite-valued logic, with rational numbers between 0 and 1 as truth values.'''
 @final
 class L_aleph_0(RationalLogicBase):
-    '''Łukasiewicz's infinite-valued logic, with rational numbers between 0 and 1 as truth values.'''
+    '''Lukasiewicz's infinite-valued logic, with rational numbers between 0 and 1 as truth values.'''
     def strong_disjunction(self, other: Self, /) -> Self: ...
     def strong_conjunction(self, other: Self, /) -> Self: ...
     def diamond(self) -> Self: ...
@@ -162,13 +162,13 @@ class L_aleph_0(RationalLogicBase):
 @final
 class NP_aleph_0(RationalTNormLogic): '''A t-norm logic with the nilpotent minimum norm as the implication operator and rational truth values only.'''
 @overload
-def gödel_logic(name_1: str, name_2: str, /, *names: str, clsname: str|None=...) -> type[GödelLogic]: ...
+def godel_logic(name_1: str, name_2: str, /, *names: str, clsname: str|None=...) -> type[GodelLogic]: ...
 @overload
-def gödel_logic(*, k: int, prefix: str=..., clsname: str|None=...) -> type[GödelLogic]: '''Returns a Gödel logic class with name ``clsname`` and truth values of names ``name_1`` (0), ``name_2`` (1/(k-1)), ..., ``name_(k-1)`` ((k-2)/(k-1)), ``name_k`` (1).'''
+def godel_logic(*, k: int, prefix: str=..., clsname: str|None=...) -> type[GodelLogic]: '''Returns a Godel logic class with name ``clsname`` and truth values of names ``name_1`` (0), ``name_2`` (1/(k-1)), ..., ``name_(k-1)`` ((k-2)/(k-1)), ``name_k`` (1).'''
 @overload
-def łukasiewicz_logic(name_1: str, name_2: str, /, *names: str, clsname: str|None=...) -> type[ŁukasiewiczLogic]: ...
+def lukasiewicz_logic(name_1: str, name_2: str, /, *names: str, clsname: str|None=...) -> type[LukasiewiczLogic]: ...
 @overload
-def łukasiewicz_logic(*, k: int, prefix: str=..., clsname: str|None=...) -> type[ŁukasiewiczLogic]: '''Returns a Łukasiewicz logic class with name ``clsname`` and truth values of names ``name_1`` (0), ``name_2`` (1/(k-1)), ..., ``name_(k-1)`` ((k-2)/(k-1)), ``name_k`` (1).'''
+def lukasiewicz_logic(*, k: int, prefix: str=..., clsname: str|None=...) -> type[LukasiewiczLogic]: '''Returns a Lukasiewicz logic class with name ``clsname`` and truth values of names ``name_1`` (0), ``name_2`` (1/(k-1)), ..., ``name_(k-1)`` ((k-2)/(k-1)), ``name_k`` (1).'''
 @overload
 def post_logic(name_1: str, name_2: str, /, *names: str, clsname: str|None=...) -> type[PostLogic]: ...
 @overload

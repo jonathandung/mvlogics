@@ -31,17 +31,15 @@ required-version = ">=0.17.0"
 target-version = "py312"
 
 [tool.ruff.lint]
-ignore = ["missing-whitespace-around-arithmetic-operator", "missing-whitespace-around-bitwise-or-shift-operator", "missing-whitespace-around-parameter-equals", "too-few-spaces-before-inline-comment", "blank-line-between-methods", "blank-lines-top-level", "blank-lines-after-function-or-class", "blank-lines-before-nested-definition", "line-too-long", "multiple-statements-on-one-line-colon", "multiple-statements-on-one-line-semicolon", "ambiguous-variable-name", "non-ascii-name", "non-ascii-import-name", "docstring-in-stub", "mutable-class-default", "non-empty-init-module", "raise-vanilla-args"]
-select = ["A", "ARG", "ANN", "B", "blind-except", "prohibited-trailing-comma", "C4", "complex-structure", "E", "dot-format-in-exception", "commented-out-code", "EXE", "F", "line-contains-todo", "static-join-to-f-string", "FURB", "G", "ISC", "LOG", "invalid-first-argument-name-for-class-method", "invalid-first-argument-name-for-method", "N81", "PERF", "PIE", "blanket-noqa", "PL", "PYI", "RET", "unnecessary-paren-on-raise-exception", "RUF", "S", "SIM", "SLOT", "debugger", "print", "TRY", "UP", "W", "YTT"]
+ignore = ["D", "ambiguous-variable-name", "blank-line-between-methods", "blank-lines-after-function-or-class", "blank-lines-before-nested-definition", "blank-lines-top-level", "docstring-in-stub", "f-string-in-exception", "implicit-namespace-package", "invalid-class-name", "line-too-long", "missing-whitespace-around-arithmetic-operator", "missing-whitespace-around-bitwise-or-shift-operator", "missing-whitespace-around-parameter-equals", "multiple-statements-on-one-line-colon", "multiple-statements-on-one-line-semicolon", "mutable-class-default", "non-empty-init-module", "non-lowercase-variable-in-function", "private-member-access", "raise-vanilla-args", "raw-string-in-exception", "too-few-spaces-before-inline-comment", "unsorted-imports"]
+select = ["ALL"]
 preview = true
 typing-extensions = false
-
-[tool.ruff.lint.pep8-naming]
-extend-ignore-names = ["mcls"]
 
 [tool.ruff.lint.per-file-ignores]
 "mvlogics/*.py" = ["ANN", "PYI"]
 "mvlogics/__init__.py" = ["unused-import", "magic-value-comparison"]
+"!mvlogics/__init__.py" = ["missing-copyright-notice"]
 
 [tool.ruff.lint.flake8-bugbear]
 extend-immutable-calls = ["__import__"]
