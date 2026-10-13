@@ -28,7 +28,7 @@ For quick questions, consider:
 - Reading the FAQ section below
 - Asking in community channels
 
-## 🔧 Common Issues & Solutions
+## Common Issues & Solutions
 
 ### Installation Problems
 

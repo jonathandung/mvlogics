@@ -7,7 +7,7 @@ from decimal import Decimal
 from fractions import Fraction
 from typing import Any, ClassVar, Final, Literal, NoReturn, Self, TypeGuard, final, overload
 from .protocols import DecimalLogicBase, GödelLogic, LogicBase, MemberlessLogicBase, PostLogic, RationalLogicBase, RationalTNormLogic, StrictLogicBase, TNormLogic, ŁukasiewiczLogic
-__all__ = 'ALL_LOGICS', 'ALL_LOGICS_TUPLE', 'ALL_METHODS', 'B4', 'BI3', 'EXTENSION_METHODS', 'FAKE_PROTOCOLS', 'FAKE_PROTOCOLS_TUPLE', 'FORBIDDEN', 'G3', 'K3', 'L3', 'LP', 'MIXIN_METHODS', 'NP', 'P3', 'RECOMMENDED_METHODS', 'REQUIRED_ATTRS', 'RM3', 'Π', 'Boolean', 'G_aleph_0', 'G_inf', 'L_aleph_0', 'L_inf', 'NP_aleph_0', 'Unit', 'Π_aleph_0', 'convert', 'decimal_logic_from_implication', 'decimal_t_norm_logic', 'gödel_logic', 'is_builtin_logic', 'is_builtin_logic_member', 'is_logic', 'is_logic_member', 'logic_from_implication', 'post_logic', 'rational_logic_from_implication', 'rational_t_norm_logic', 't_norm_logic', 'łukasiewicz_logic'
+__all__ = 'ALL_LOGICS', 'ALL_LOGICS_TUPLE', 'ALL_METHODS', 'B4', 'BI3', 'EXTENSION_METHODS', 'FAKE_PROTOCOLS', 'FAKE_PROTOCOLS_TUPLE', 'FORBIDDEN', 'G3', 'K3', 'L3', 'LP', 'MIXIN_METHODS', 'NP', 'P3', 'RECOMMENDED_METHODS', 'REQUIRED_ATTRS', 'RM3', 'Boolean', 'G_aleph_0', 'G_inf', 'L_aleph_0', 'L_inf', 'NP_aleph_0', 'P', 'P_aleph_0', 'Unit', 'convert', 'decimal_logic_from_implication', 'decimal_t_norm_logic', 'gödel_logic', 'is_builtin_logic', 'is_builtin_logic_member', 'is_logic', 'is_logic_member', 'logic_from_implication', 'post_logic', 'rational_logic_from_implication', 'rational_t_norm_logic', 't_norm_logic', 'łukasiewicz_logic'
 __version__: Final[str]
 REQUIRED_ATTRS: Final[frozenset[str]]
 '''The method names all logic classes must have.'''
@@ -134,7 +134,7 @@ class P3(PostLogic):
     U: ClassVar[Self]
     F: ClassVar[Self]
 @final
-class Π(DecimalLogicBase): '''Product logic, with truth values between 0 and 1. For precision, please pass in a string (e.g. '3.14159' instead of 3.14159) to the constructor; however, passing an int, float or decimal.Decimal instance is also acceptable.'''
+class P(DecimalLogicBase): '''Product logic, with truth values between 0 and 1. For precision, please pass in a string (e.g. '3.14159' instead of 3.14159) to the constructor; however, passing an int, float or decimal.Decimal instance is also acceptable.'''
 @final
 class G_inf(DecimalLogicBase): '''Gödel's infinite-valued logic, with real numbers between 0 and 1 as truth values.'''
 @final
@@ -148,7 +148,7 @@ class L_inf(DecimalLogicBase):
 @final
 class NP(TNormLogic): '''A t-norm logic with the nilpotent minimum norm as the implication operator.'''
 @final
-class Π_aleph_0(RationalLogicBase): '''Product logic, with rational numbers between 0 and 1 as truth values. Pass in what Fraction takes to the constructor.'''
+class P_aleph_0(RationalLogicBase): '''Product logic, with rational numbers between 0 and 1 as truth values. Pass in what Fraction takes to the constructor.'''
 @final
 class G_aleph_0(RationalLogicBase): '''Gödel's infinite-valued logic, with rational numbers between 0 and 1 as truth values.'''
 @final
