@@ -22,7 +22,7 @@ jobs:
         enable-cache: false
     - run: uvx ruff check --output-format github
     - run: uvx ty check --output-format github
-    - uses: jonathandung/check-empty@ac18e65e7d8469f55012e02194e1aca98ce6c8b8
+    - uses: jonathandung/check-empty@66813e3b6dd54b5b0c0ef70c4f2dc0f7915e6de0
       with:
         filenames: mvlogics/py.typed
     - uses: DavidAnson/markdownlint-cli2-action@21c1be1b93ad9ed58fa840aacc3f279cde2a72ff

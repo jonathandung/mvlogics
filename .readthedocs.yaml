@@ -9,6 +9,7 @@ build:
     - curl -Z -o docs/source/ai-use.md https://raw.githubusercontent.com/jonathandung/.github/main/AI_USAGE_POLICY.md -o docs/source/conduct.md https://raw.githubusercontent.com/jonathandung/.github/main/CODE_OF_CONDUCT.md -o docs/source/contributing.md https://raw.githubusercontent.com/jonathandung/.github/main/CONTRIBUTING.md -o docs/source/governance.md https://raw.githubusercontent.com/jonathandung/.github/main/GOVERNANCE.md
     - cp CUSTOM_LOGIC.md docs/source/custom-logic.md
     - cp OPERATOR_REFERENCE.md docs/source/operators.md
+    - cp SUPPORT.md docs/source/support.md
     - $READTHEDOCS_VIRTUALENV_PATH/bin/python -m sphinx -TWj auto -d _build/doctrees -b html docs/source $READTHEDOCS_OUTPUT/html
     - $READTHEDOCS_VIRTUALENV_PATH/bin/python -m sphinx -TWj auto -d _build/doctrees -b latex docs/source $READTHEDOCS_OUTPUT/latex
     - cd $READTHEDOCS_OUTPUT/latex && latexmk -f -r latexmkrc -pdf -dvi- -ps- -jobname=mvlogics -interaction=nonstopmode -auxdir=. -outdir=$READTHEDOCS_OUTPUT/pdf
