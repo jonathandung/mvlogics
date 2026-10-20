@@ -1,14 +1,26 @@
 project = 'mvlogics'
 author = 'Jonathan Dung'
-copyright = '2026 Jonathan Dung' # ruff: ignore[builtin-variable-shadowing]
+copyright = '2026 Jonathan Dung'  # ruff: ignore[builtin-variable-shadowing]
 version = '1.0'
-release = '1.0.5'
+release = '1.0.6'
 need_sphinx = '9.1.0'
 pygments_style = 'sphinx'
-extensions = ['autoapi.extension', 'notfound.extension', 'sphinx_copybutton', 'sphinx.ext.viewcode', 'sphinx.ext.intersphinx', 'myst_parser']
+extensions = [
+    'autoapi.extension',
+    'notfound.extension',
+    'sphinx_copybutton',
+    'sphinx.ext.viewcode',
+    'sphinx.ext.intersphinx',
+    'myst_parser',
+]
 default_role = 'py:obj'
 html_theme = 'furo'
-html_theme_options = {'top_of_page_buttons': ['view', 'edit'], 'source_repository': 'https://github.com/jonathandung/mvlogics', 'source_branch': 'main', 'source_directory': 'docs/source/'}
+html_theme_options = {
+    'top_of_page_buttons': ['view', 'edit'],
+    'source_repository': 'https://github.com/jonathandung/mvlogics',
+    'source_branch': 'main',
+    'source_directory': 'docs/source/',
+}
 source_suffix = {'.rst': 'restructuredtext', '.md': 'markdown'}
 html_short_title = f'mvlogics {release} docs'
 autoapi_dirs = ['../../mvlogics']
@@ -17,6 +29,12 @@ autoapi_root = 'api'
 autoapi_python_class_content = 'both'
 autoapi_member_order = 'groupwise'
 autoapi_keep_files = True
-autoapi_options = ['members', 'undoc-members', 'show-inheritance', 'show-module-summary', 'special-members']
+autoapi_options = [
+    'members',
+    'undoc-members',
+    'show-inheritance',
+    'show-module-summary',
+    'special-members',
+]
 copybutton_exclude = '.linenos, .gp, .go'
 copybutton_prompt_text = '>>> '

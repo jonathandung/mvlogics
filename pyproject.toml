@@ -1,5 +1,5 @@
 [build-system]
-requires = ["uv_build>=0.13.0"]
+requires = ["uv_build>=0.13.3"]
 build-backend = "uv_build"
 
 [dependency-groups]
@@ -7,7 +7,7 @@ docs = ["sphinx==9.1.0", "furo==2025.12.19", "sphinx-copybutton==0.5.2", "sphinx
 
 [project]
 name = "mvlogics"
-version = "1.0.5"
+version = "1.0.6"
 authors = [{name = "Jonathan Dung", email = "jonathandung@yahoo.com"}]
 maintainers = [{name = "Jonathan Dung", email = "jonathandung@yahoo.com"}]
 description = "Multi-valued logics."
@@ -27,7 +27,7 @@ Download = "https://pypi.org/project/mvlogics/#files"
 "Release Notes" = "https://github.com/jonathandung/mvlogics/releases"
 
 [tool.ruff]
-required-version = ">=0.17.0"
+required-version = ">=0.17.1"
 target-version = "py312"
 
 [tool.ruff.lint]
@@ -73,7 +73,8 @@ include = ["mvlogics"]
 exclude = ["mvlogics/__init__.py"]
 
 [tool.uv]
-required-version = ">=0.13.0"
+preview = true
+required-version = ">=0.13.3"
 
 [tool.uv.build-backend]
 module-name = "mvlogics"

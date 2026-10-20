@@ -15,7 +15,7 @@ See the [installation guide](https://mvlogics.readthedocs.io/en/stable/installat
 
 ## Version
 
-This is mvlogics v1.0.5.
+This is mvlogics v1.0.6.
 
 ## Resources
 

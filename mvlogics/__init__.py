@@ -1,7 +1,7 @@
 # Copyright © 2026 Jonathan Dung. All rights reserved.
 # SPDX-License-Identifier: MIT
 from .base import ALL_LOGICS, ALL_LOGICS_TUPLE, ALL_METHODS, EXTENSION_METHODS, FAKE_PROTOCOLS, FAKE_PROTOCOLS_TUPLE, FORBIDDEN, MIXIN_METHODS, RECOMMENDED_METHODS, REQUIRED_ATTRS, Decimal, Fraction, _AllLogicMeta, _DecimalLogicMeta, _FakeProtocolMeta, _FastEnumLogicMeta, _RationalLogicMeta, _singleton_new, _SubmoduleMeta, _all as __all__
-__version__ = '1.0.5'
+__version__ = '1.0.6'
 def is_logic(typ): return isinstance(typ, _AllLogicMeta)
 def is_logic_member(obj): return is_logic(type(obj))
 def is_builtin_logic(typ): return typ.__name__ in ALL_LOGICS and typ.__module__ == __name__

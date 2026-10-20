@@ -5,7 +5,7 @@ from fractions import Fraction
 from weakref import WeakKeyDictionary
 def _weak_cache(name=None):
     def dec(f):
-        def g(self, _=WeakKeyDictionary()): # ruff:ignore[function-call-in-default-argument]
+        def g(self, _=WeakKeyDictionary()): # ruff: ignore[mutable-argument-default]
             if (r := _.get(self, s := _SlowEnumLogicMeta.MemberContainer._NOT_GENERATED)) is s: _[self] = r = f(self)
             return r
         g.__name__ = name or f.__name__; return g
