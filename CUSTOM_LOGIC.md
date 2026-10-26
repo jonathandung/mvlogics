@@ -1,6 +1,6 @@
 # Creating your own logic
 
-This module does not technically offer a public interface to create custom logic classes. The protocols in the ``protocols`` submodule are not for
+This module does not technically offer a public interface to create custom logic classes. The protocols in the `protocols` submodule are not for
 subclassing, and will not provide the mixin methods for you. The resulting subclasses will not even be recognized as logic classes by the indicator
 functions provided by this module.
 
@@ -41,13 +41,11 @@ class MyLogic(metaclass=_FastEnumLogicMeta):
 
     # no need to define __init_subclass__ since all logic classes must be unsubclassable
     # below are optional
-    def normalized(self):
+    def normalized(self):  # return a `fractions.Fraction`
         return Fraction((3, 1, 0.5)[self.value])
-
-    # return a fractions.Fraction
     @classmethod
     def from_normalized(cls, val, /):
-        # val is an instance of ``fractions.Fraction`` taking its value between 0 and 1 inclusive
+        # val is an instance of `fractions.Fraction` taking its value between 0 and 1 inclusive
         return cls(min(max(int(1 / val), 0), 2))
 
     # for other methods you may implement, see OPERATOR_REFERENCE.md

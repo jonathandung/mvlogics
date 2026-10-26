@@ -1,5 +1,5 @@
 [build-system]
-requires = ["uv_build>=0.13.3"]
+requires = ["uv_build>=0.13.5"]
 build-backend = "uv_build"
 
 [dependency-groups]
@@ -74,7 +74,7 @@ exclude = ["mvlogics/__init__.py"]
 
 [tool.uv]
 preview = true
-required-version = ">=0.13.3"
+required-version = ">=0.13.5"
 
 [tool.uv.build-backend]
 module-name = "mvlogics"
