@@ -22,14 +22,10 @@ jobs:
         enable-cache: false
     - run: uvx ruff check --output-format github
     - run: uvx ty check --output-format github
+    - run: uv audit
     - uses: jonathandung/check-empty@83f176d1255ed31da4bccdcb7a6d834b192914b8
       with:
         filenames: mvlogics/py.typed
     - uses: DavidAnson/markdownlint-cli2-action@21c1be1b93ad9ed58fa840aacc3f279cde2a72ff
-      with:
-        globs: |
-          .github/**/*.md
-          *.md
-    - run: uv audit
     - uses: zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
     timeout-minutes: 3

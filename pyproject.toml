@@ -1,9 +1,9 @@
 [build-system]
-requires = ["uv_build>=0.13.5"]
+requires = ["uv_build>=0.13.6"]
 build-backend = "uv_build"
 
 [dependency-groups]
-docs = ["sphinx==9.1.0", "furo==2025.12.19", "sphinx-copybutton==0.5.2", "sphinx-notfound-page==1.1.0", "sphinx-autoapi==3.8.1", "myst-parser==5.1.0"]
+docs = ["sphinx==9.2.0; python_version >= '3.13'", "sphinx==9.1.0; python_version < '3.13'", "furo==2025.12.19", "sphinx-copybutton==0.5.2", "sphinx-notfound-page==1.1.0", "sphinx-autoapi==3.8.1", "myst-parser==5.1.0"]
 
 [project]
 name = "mvlogics"
@@ -27,7 +27,7 @@ Download = "https://pypi.org/project/mvlogics/#files"
 "Release Notes" = "https://github.com/jonathandung/mvlogics/releases"
 
 [tool.ruff]
-required-version = ">=0.17.1"
+required-version = ">=0.17.3"
 target-version = "py312"
 
 [tool.ruff.lint]
@@ -74,7 +74,7 @@ exclude = ["mvlogics/__init__.py"]
 
 [tool.uv]
 preview = true
-required-version = ">=0.13.5"
+required-version = ">=0.13.6"
 
 [tool.uv.build-backend]
 module-name = "mvlogics"

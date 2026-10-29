@@ -1,15 +1,17 @@
 # Operator reference
 
-Each logic class implements as many operators that make sense for it as possible. They have standardized names, signatures and semantics as follows.
+Each logic class implements as many operators that make sense for it as possible. They
+have standardized names, signatures and semantics as follows.
 
-Note that the symbols shown are the operators as you would invoke them in Python, not the actual operators in logic.
+Note that the symbols shown are the operators as you would invoke them in Python, not
+the actual operators in logic.
 
 ## Shared by all logics
 
-- `__and__` (&): And
-- `__or__` (|): Or
-- `__invert__` (~), `__neg__` (-): Not
-- `__pos__` (+): Identity
+- &: And
+- |: Or
+- ~, -: Not
+- +: Identity
 - `implies`: Implication
 - `iff`, `xnor`: Biconditional
 - `nor`: Neither
@@ -26,7 +28,8 @@ Note that the symbols shown are the operators as you would invoke them in Python
 - `a.box()`: Modal box; `not diamond(not a)`
 - `a.doubtful()`: `a.iff(not a)`
 - `a.gullibility(b)`: a if a is equivalent to b, uncertain otherwise
-- `a.consensus(b)`: a if a is equivalent to b; the other input if an input is uncertain; uncertain otherwise
+- `a.consensus(b)`: a if a is equivalent to b; the other input if an input is
+  uncertain; uncertain otherwise
 
 ## Truth table for boolean logic
 <!--markdownlint-disable-next-line MD013 MD033-->

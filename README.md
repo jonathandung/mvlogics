@@ -1,17 +1,23 @@
 # [mvlogics](https://mvlogics.readthedocs.io)
 
-In math, specifically the study of logic, one occassionally finds it useful to consider logical systems other than Boolean logic, that is, true
-(verum) and false (falsum). There may be logics in which a member represents a statement of unknown truth, for instance. This library aims to
-implement the most common of these logics to facilitate mathematical research.
+In math, specifically the study of logic, one occassionally finds it useful to consider
+logical systems other than Boolean logic, that is, true (verum) and false (falsum).
+There may be logics in which a member represents a statement of unknown truth, for
+instance. This library aims to implement the most common of these logics to facilitate
+mathematical research.
 
 ## Setup
 
 Besides [pip](https://pypi.org/project/mvlogics), this package is also
-[available on anaconda](https://anaconda.org/channels/conda-forge/packages/mvlogics/overview) via the conda-forge channel.
+[available on anaconda](https://anaconda.org/channels/conda-forge/packages/mvlogics/overview)
+via the conda-forge channel.
 
-You can install using either conda or pip, or directly from roughly fortnightly GitHub releases; no extra setup is needed.
+You can install using either conda or pip, or directly from roughly fortnightly GitHub
+releases; no extra setup is needed.
 
-See the [installation guide](https://mvlogics.readthedocs.io/en/stable/installation.html) for more.
+See the
+[installation guide](https://mvlogics.readthedocs.io/en/stable/installation.html) for
+more.
 
 ## Version
 
