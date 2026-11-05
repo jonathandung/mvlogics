@@ -16,7 +16,7 @@ If the referenced build is outdated by five builds or more, the issue will be cl
 
 ## Links
 
-Link to the generated html page or the source file (.rst; .pyi if issue lies in API reference from stub docstrings) in this section.
+Link to the generated html page or the source file.
 
 For the reviewer's convenience, you are encouraged to include both.
 
@@ -26,7 +26,8 @@ Describe the problem concisely and include a possible solution if you see fit.
 
 ## Examples
 
-Situations where, for instance, the current documentation phrasing would apply but the actual behaviour differs. Delete if irrelevant.
+Situations where, for instance, the current documentation phrasing would apply but the
+actual behaviour differs. Delete if irrelevant.
 
 ## Screenshots
 
@@ -34,9 +35,11 @@ If applicable, add screenshots to help explain your problem.
 
 ## Complete the following
 
-- Python version tag (``python -VV``)
-- Read the docs build number; see [this page](https://app.readthedocs.org/projects/mvlogics/builds/?utm_source=mvlogics&utm_content=flyout)
-- Package version (``pip show mvlogics | grep Version:`` or ``conda list mvlogics --fields version``)
+- Python version tag (`python -VV`)
+- Read the docs build number; see
+  [this page](https://app.readthedocs.org/projects/mvlogics/builds/?utm_source=mvlogics&utm_content=flyout)
+- Package version (`pip show mvlogics | grep Version:` or
+  `conda list mvlogics --fields version`)
 
 ## Additional context
 

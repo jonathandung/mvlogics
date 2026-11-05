@@ -8,8 +8,10 @@ assignees: jonathandung
 
 ## Describe the bug
 
-A clear and concise description of what the bug is. Include the pattern implementation/utility function at fault, and the relevant snippet of the
-source if possible. Also link to the source file here; a permalink (not /blob/main/) to the first faulty line is preferred.
+A clear and concise description of what the bug is.
+
+Also link to the source file here; a permalink (not /blob/main/) to the first faulty
+line is preferred.
 
 ## To Reproduce
 
@@ -28,10 +30,11 @@ If applicable, add screenshots to help explain your problem.
 
 ## Complete the following
 
-- Python version tag (``python -VV``)
-- mvlogics version (``python -c "print(__import__('mvlogics').__version__)"``)
+- Python version tag (`python -VV`)
+- mvlogics version (`python -c "print(__import__('mvlogics').__version__)"`)
 - Operating system
-- Package version (``pip show mvlogics | grep Version:`` or ``conda list mvlogics --fields version``)
+- Package version (`pip show mvlogics | grep Version:` or
+  `conda list mvlogics --fields version`)
 - Full error traceback
 
 ## Additional context

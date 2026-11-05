@@ -1,5 +1,5 @@
 [build-system]
-requires = ["uv_build>=0.13.6"]
+requires = ["uv_build>=0.13.7"]
 build-backend = "uv_build"
 
 [dependency-groups]
@@ -27,7 +27,7 @@ Download = "https://pypi.org/project/mvlogics/#files"
 "Release Notes" = "https://github.com/jonathandung/mvlogics/releases"
 
 [tool.ruff]
-required-version = ">=0.17.3"
+required-version = ">=0.17.4"
 target-version = "py312"
 
 [tool.ruff.lint]
@@ -74,7 +74,7 @@ exclude = ["mvlogics/__init__.py"]
 
 [tool.uv]
 preview = true
-required-version = ">=0.13.6"
+required-version = ">=0.13.7"
 
 [tool.uv.build-backend]
 module-name = "mvlogics"

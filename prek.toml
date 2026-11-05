@@ -14,7 +14,7 @@ hooks = [{id = "validate-pyproject"}]
 
 [[repos]]
 repo = "https://github.com/betterleaks/betterleaks"
-rev = "v2.0.0-rc.6"
+rev = "v1.10.0"
 hooks = [{id = "betterleaks"}]
 
 [[repos]]
@@ -29,5 +29,5 @@ hooks = [{id = "check-empty", files = '^mvlogics/py\.typed$'}]
 
 [[repos]]
 repo = "https://github.com/astral-sh/ruff-pre-commit"
-rev = "v0.17.3"
+rev = "v0.17.4"
 hooks = [{id = "ruff-check", args = ["--fix"]}]

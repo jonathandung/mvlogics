@@ -1,16 +1,19 @@
 # Support Guidelines
 
-Thank you for using `mvlogics`! This document outlines how to get help with this project.
+Thank you for using `mvlogics`!
 
-Before jumping to seek support, do skim through [the readme](https://github.com/jonathandung/mvlogics#mvlogics).
+Before jumping to seek support, do skim through
+[the readme](https://github.com/jonathandung/mvlogics#mvlogics).
 
 ## Bug Reports
 
 If you've found a bug, please:
 
-1. Check if it's already reported in [Issues](https://github.com/jonathandung/mvlogics/issues)
+1. Check if it's already reported in
+   [Issues](https://github.com/jonathandung/mvlogics/issues)
 2. Create a new issue if not
-3. Refer and adhere to the issue template chosen, or risk your issue being closed without going through actual review
+3. Refer and adhere to the issue template chosen, or risk your issue being closed
+   without going through actual review
 
 ## Feature Requests
 
@@ -44,7 +47,8 @@ pip check # Exit code should be zero
 # If you are limited to pip:
 pip install -U pipdeptree
 pipdeptree # Pretty print the pip packages dependency tree
-pipdeptree --packages mvlogics # Show only the dependents and dependencies of this package
+pipdeptree --packages mvlogics
+# Show only the dependents and dependencies of this package
 
 # For uv (much faster):
 uv pip install -U mvlogics
@@ -76,7 +80,7 @@ pip show mvlogics
 uv pip show mvlogics
 ```
 
-If the package is not working with python, check ``sys.path``:
+If the package is not working with python, check `sys.path`:
 
 ```bash
 python3 -c "print(*__import__('sys').path, sep='\n')"
@@ -89,9 +93,6 @@ As fast as I can; that is:
 - Bug reports: 3 days
 - Feature requests: Reviewed biweekly
 - General questions: Community-driven
-
-I will try to make a post on the discussions page (e.g. hiatus announcement) and set my status to 'On vacation' or similar in case of inactivity
-such that I cannot fulfill these promises or meet deadlines I set myself.
 
 ## Closing remarks
 
