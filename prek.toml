@@ -24,7 +24,7 @@ hooks = [{id = "sphinx-lint"}]
 
 [[repos]]
 repo = "https://github.com/jonathandung/check-empty"
-rev = "v4.1.0"
+rev = "v4.1.1"
 hooks = [{id = "check-empty", files = '^mvlogics/py\.typed$'}]
 
 [[repos]]
