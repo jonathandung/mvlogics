@@ -1,10 +1,5 @@
 # Creating your own logic
 
-This module does not technically offer a public interface to create custom logic
-classes. The protocols in the `protocols` submodule are not for subclassing, and will
-not provide the mixin methods for you. The resulting subclasses will not even be
-recognized as logic classes by the indicator functions provided by this module.
-
 If you find an omission in the implementations of this library for a somewhat useful
 logic type, you are encouraged to open an issue using the logic request template. To
 acknowledge your contributions, your name will be included in the docstring of the new
@@ -12,7 +7,7 @@ class; you can opt out if you want.
 
 However, if you do not want to do so for any reason, follow the template below closely:
 
-```python
+```py
 from fractions import Fraction
 from mvlogics.base import _FastEnumLogicMeta
 
@@ -59,7 +54,7 @@ class MyLogic(metaclass=_FastEnumLogicMeta):
 
 and in the corresponding stub file:
 
-```python
+```py
 from fractions import Fraction
 from typing import Self
 from mvlogics.protocols import LogicBase
@@ -77,14 +72,14 @@ class MyLogic(LogicBase[int]):
 ```
 
 For help in typing or implementing the logic, let us know in the discussions page; we
-will be happy to help. You may also read the source code to get an idea of what's going
-on.
+will be happy to help. You may also read the source code of this library to get an idea
+of what's going on, though it may be a bit hard to follow.
 
 Note:
 
-- The private API of this library may change between minor versions, so be sure to keep
-  yourself updated whenever bumping dependencies.
+- The private API of this library may change between patch versions, so be sure to keep
+  yourself updated.
 - The convention of this project is to include docstrings in .pyi files only, and you
   are encouraged to do so too.
-- This is considered bad practice, and we are not accountable for unexpected behaviour
+- This is considered bad practice, and we are not responsible for unexpected behaviour
   in the resultant class if your implementation can be proved to be faulty.

@@ -27,7 +27,7 @@ Download = "https://pypi.org/project/mvlogics/#files"
 "Release Notes" = "https://github.com/jonathandung/mvlogics/releases"
 
 [tool.ruff]
-required-version = ">=0.17.4"
+required-version = ">=0.17.5"
 target-version = "py312"
 
 [tool.ruff.lint]
