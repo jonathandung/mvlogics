@@ -1,7 +1,7 @@
 from collections.abc import Generator, Sequence
 from decimal import Decimal
 from fractions import Fraction
-from typing import Any, Self, final, overload
+from typing import Any, Final, Self, final, overload
 class MemberlessLogicBase[R]:
     '''All the operators are technically abstract, but they are not marked so here to avoid type annotation duplication.'''
     @classmethod
@@ -46,10 +46,14 @@ class LogicBase[V](AbstractLogicBase[V]):
     members: MemberContainer[V]
     '''A special object holding the members of the logic.'''
 class InfiniteLogicBase[R](AbstractLogicBase[R]):
-    T: Self
-    F: Self
-    verum: Self
-    falsum: Self
+    T: Final[Self]
+    '''True.'''
+    F: Final[Self]
+    '''False.'''
+    verum: Final[Self]
+    '''True.'''
+    falsum: Final[Self]
+    '''False.'''
     members: dict[R, Self]
     '''A dictionary mapping truth values to members of the logic.'''
 class DecimalLogicBase(InfiniteLogicBase[Decimal]):
@@ -67,19 +71,19 @@ class RationalLogicBase(InfiniteLogicBase[Fraction]):
     @overload
     def __new__(cls, val: float|Fraction|Decimal, /) -> Self: ...
     @overload
-    def __new__(cls, num: int, dem: int, /) -> Self: ...
+    def __new__(cls, numerator: int, denominator: int, /) -> Self: ...
 class StrictLogicBase[R](LogicBase[R]):
-    def gullibility(self, other: Self, /) -> Self: ...
-    def consensus(self, other: Self, /) -> Self: ...
+    def gullibility(self, other: Self, /) -> Self: '''``self`` if ``self`` is equivalent to ``other``, uncertain otherwise.'''
+    def consensus(self, other: Self, /) -> Self: '''``self`` if ``self`` is equivalent to ``other``; the other input if an input is uncertain; uncertain otherwise.'''
 class GodelLogic(LogicBase[Fraction]): ...
 class LukasiewiczLogic(LogicBase[Fraction]):
-    def strong_disjunction(self, other: Self, /) -> Self: ...
-    def strong_conjunction(self, other: Self, /) -> Self: ...
-    def diamond(self) -> Self: ...
-    def box(self) -> Self: ...
-    def doubtful(self) -> Self: ...
+    def strong_conjunction(self, other: Self, /) -> Self: '''Strong conjunction.'''
+    def strong_disjunction(self, other: Self, /) -> Self: '''Strong disjunction.'''
+    def diamond(self) -> Self: '''Modal diamond.'''
+    def box(self) -> Self: '''Modal box.'''
+    def doubtful(self) -> Self: '''``self.iff(~self)``.'''
 class PostLogic(LogicBase[Fraction]): ...
 class TNormLogic(DecimalLogicBase):
-    def strong_conjunction(self, other: Self, /) -> Self: ...
+    def strong_conjunction(self, other: Self, /) -> Self: '''Strong conjunction.'''
 class RationalTNormLogic(RationalLogicBase):
-    def strong_conjunction(self, other: Self, /) -> Self: ...
+    def strong_conjunction(self, other: Self, /) -> Self: '''Strong conjunction.'''

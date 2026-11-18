@@ -22,13 +22,13 @@ the actual operators in logic.
 
 ## Optional
 
-- `a.strong_conjunction(b)`: Strong conjunction; `not a.implies(not b)`
-- `a.strong_disjunction(b)`: Strong disjunction; `(not a).implies(b)`
-- `a.diamond()`: Modal diamond; `(not a).implies(a)`
-- `a.box()`: Modal box; `not diamond(not a)`
-- `a.doubtful()`: `a.iff(not a)`
-- `a.gullibility(b)`: a if a is equivalent to b, uncertain otherwise
-- `a.consensus(b)`: a if a is equivalent to b; the other input if an input is
+- `a.strong_conjunction(b)`: Strong conjunction; `~a.implies(~b)`
+- `a.strong_disjunction(b)`: Strong disjunction; `(~a).implies(b)`
+- `a.diamond()`: Modal diamond; `(~a).implies(a)`
+- `a.box()`: Modal box; `~(~a).diamond()`
+- `a.doubtful()`: `a.iff(~a)`
+- `a.gullibility(b)`: `a` if `a` is equivalent to `b`, uncertain otherwise
+- `a.consensus(b)`: `a` if `a` is equivalent to `b`; the other input if an input is
   uncertain; uncertain otherwise
 
 ## Truth table for boolean logic

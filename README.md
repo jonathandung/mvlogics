@@ -1,5 +1,7 @@
 # [mvlogics](https://mvlogics.readthedocs.io)
 
+[![#StandWithPalestine](https://raw.githubusercontent.com/TheBSD/StandWithPalestine/main/badges/StandWithPalestine.svg)](https://github.com/TheBSD/StandWithPalestine/blob/main/docs/README.md)
+
 In math, specifically the study of logic, one occassionally finds it useful to consider
 logical systems other than Boolean logic, that is, true (verum) and false (falsum).
 There may be logics in which a member represents a statement of unknown truth, for
