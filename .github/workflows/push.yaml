@@ -23,7 +23,7 @@ jobs:
     - run: uvx ruff check --output-format github
     - run: uvx ty check --output-format github
     - run: uv audit
-    - uses: jonathandung/check-empty@83f176d1255ed31da4bccdcb7a6d834b192914b8
+    - uses: jonathandung/check-empty@d6ffde5ee3bd04e90dbc9562d9f6f5cbf18e5dfd
       with:
         filenames: mvlogics/py.typed
     - uses: DavidAnson/markdownlint-cli2-action@696eb3f2509270d7b882d2aa68347bc676e7af34
