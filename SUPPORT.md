@@ -21,7 +21,7 @@ Have an idea? We'd love to hear it!
 
 - Search existing issues to avoid duplicates
 - Explain the use case and expected behavior
-- Include examples unless you think the idea is a no-brainer
+- Include examples
 
 ## Questions
 

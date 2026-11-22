@@ -7,7 +7,7 @@ docs = ["sphinx==9.2.0; python_version >= '3.13'", "sphinx==9.1.0; python_versio
 
 [project]
 name = "mvlogics"
-version = "1.0.6"
+version = "1.0.7"
 authors = [{name = "Jonathan Dung", email = "jonathandung@yahoo.com"}]
 maintainers = [{name = "Jonathan Dung", email = "jonathandung@yahoo.com"}]
 description = "Multi-valued logics."
@@ -27,7 +27,7 @@ Download = "https://pypi.org/project/mvlogics/#files"
 "Release Notes" = "https://github.com/jonathandung/mvlogics/releases"
 
 [tool.ruff]
-required-version = ">=0.17.5"
+required-version = ">=0.17.6"
 target-version = "py312"
 
 [tool.ruff.lint]

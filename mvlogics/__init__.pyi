@@ -1,7 +1,7 @@
-'''Implementations of various logics, not necessarily with two truth values.
-A logic is a propositional calculus, with an example being the familiar logical calculus of Aristotle's, where the only truth values are
-T (True, verum) and F (False, falsum) and the law of the excluded middle (that is, p | ~p for all propositions p) holds.
-Logics do not support subclassing, same as the built-in type :class:`bool`.'''
+'''| Implementations of various logics, not necessarily with two truth values.
+| A logic is a propositional calculus, with an example being the familiar logical calculus of Aristotle's, where the only truth values are
+| T (True, verum) and F (False, falsum) and the law of the excluded middle holds.
+| Logics do not support subclassing, same as the built-in type :class:`bool`.'''
 from collections.abc import Callable
 from decimal import Decimal
 from fractions import Fraction
@@ -49,8 +49,8 @@ class Unit(MemberlessLogicBase[int]):
     def __bool__(self) -> NoReturn: ...
 @final
 class Boolean(LogicBase[bool]):
-    '''Boolean or Aristotelian logic, where the law of the excluded middle holds.
-    Simply wraps the built-in class :class:`bool` to satisfy the interface.'''
+    '''| Boolean or Aristotelian logic, where the law of the excluded middle holds.
+    | Simply wraps the built-in class :class:`bool` to satisfy the interface.'''
     T: ClassVar[Self]
     F: ClassVar[Self]
     def __and__(self, other: Self, /) -> Self: ...
@@ -60,8 +60,8 @@ class Boolean(LogicBase[bool]):
     def diamond(self) -> Self: ...
 @final
 class K3(StrictLogicBase[int]):
-    '''Kleene's strong logic of indeterminancy K_3, in which besides the truth values T and F, a new 'indeterminate' truth value I is introduced.
-    T is the only designated truth value.'''
+    '''| Kleene's strong logic of indeterminancy, in which besides the truth values T and F, there is an 'indeterminate' truth value I.
+    | T is the only "designated" truth value.'''
     T: ClassVar[Self]
     I: ClassVar[Self]
     F: ClassVar[Self]
@@ -72,9 +72,9 @@ class K3(StrictLogicBase[int]):
     def consensus(self, other: Self, /) -> Self: ...
 @final
 class LP(StrictLogicBase[int]):
-    '''Priest's 'logic of paradox' (P_3), provisionally named LP because P_3 refers to ternary Post logic here.
-    The truth tables are equivalent to those of Kleene's, except I is also designated as a truth value.
-    The gullibility operation is thus not as well-defined as in K_3, and in the case that one operand is T and the other F, the arbitrary convention to return F is chosen.'''
+    '''| Priest's 'logic of paradox'.
+    | The truth tables are equivalent to those of Kleene's, except I is also designated as a truth value.
+    | The gullibility operation is thus not as well-defined as in :class:`K3`, and in the case that one operand is T and the other F, the arbitrary convention to return F is chosen.'''
     T: ClassVar[Self]
     I: ClassVar[Self]
     F: ClassVar[Self]

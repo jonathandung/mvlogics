@@ -14,8 +14,8 @@ Besides [pip](https://pypi.org/project/mvlogics), this package is also
 [available on anaconda](https://anaconda.org/channels/conda-forge/packages/mvlogics/overview)
 via the conda-forge channel.
 
-You can install using either conda or pip, or directly from roughly fortnightly GitHub
-releases; no extra setup is needed.
+You can install using either conda or pip, or directly from GitHub releases; no extra
+setup is needed.
 
 See the
 [installation guide](https://mvlogics.readthedocs.io/en/stable/installation.html) for
@@ -23,7 +23,7 @@ more.
 
 ## Version
 
-This is mvlogics v1.0.6.
+This is mvlogics v1.0.7.
 
 ## Resources
 

@@ -4,7 +4,7 @@ Each logic class implements as many operators that make sense for it as possible
 have standardized names, signatures and semantics as follows.
 
 Note that the symbols shown are the operators as you would invoke them in Python, not
-the actual operators in logic.
+the mathematical notation.
 
 ## Shared by all logics
 
