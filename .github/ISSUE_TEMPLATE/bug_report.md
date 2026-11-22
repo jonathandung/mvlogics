@@ -32,8 +32,8 @@ If applicable, add screenshots to help explain your problem.
 
 - Python version tag (`python -VV`)
 - mvlogics version (`python -c "print(__import__('mvlogics').__version__)"`)
-- Operating system
-- Package version (`pip show mvlogics | grep Version:` or
+- Operating system (`python -m platform`)
+- Package version (`uv pip show mvlogics | grep Version:` or
   `conda list mvlogics --fields version`)
 - Full error traceback
 
