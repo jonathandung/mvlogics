@@ -3,7 +3,7 @@ author = 'Jonathan Dung'
 copyright = '2026 Jonathan Dung'  # ruff: ignore[builtin-variable-shadowing]
 version = '1.0'
 release = '1.0.7'
-need_sphinx = '9.1.0'
+need_sphinx = '9.2.0'
 pygments_style = 'sphinx'
 extensions = [
     'autoapi.extension',

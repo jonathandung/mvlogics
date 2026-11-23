@@ -1,6 +1,8 @@
 # Copyright © 2026 Jonathan Dung. All rights reserved.
 # SPDX-License-Identifier: MIT
-from .base import ALL_LOGICS, ALL_LOGICS_TUPLE, ALL_METHODS, EXTENSION_METHODS, FAKE_PROTOCOLS, FAKE_PROTOCOLS_TUPLE, FORBIDDEN, MIXIN_METHODS, RECOMMENDED_METHODS, REQUIRED_ATTRS, Decimal, Fraction, _AllLogicMeta, _DecimalLogicMeta, _FakeProtocolMeta, _FastEnumLogicMeta, _RationalLogicMeta, _singleton_new, _SubmoduleMeta, _all as __all__
+from decimal import Decimal
+from fractions import Fraction
+from .base import ALL_LOGICS, ALL_LOGICS_TUPLE, ALL_METHODS, EXTENSION_METHODS, FAKE_PROTOCOLS, FAKE_PROTOCOLS_TUPLE, FORBIDDEN, MIXIN_METHODS, RECOMMENDED_METHODS, REQUIRED_ATTRS, _AllLogicMeta, _DecimalLogicMeta, _FakeProtocolMeta, _FastEnumLogicMeta, _RationalLogicMeta, _singleton_new, _SubmoduleMeta, _all as __all__
 __version__ = '1.0.7'
 def is_logic(typ): return isinstance(typ, _AllLogicMeta)
 def is_logic_member(obj): return is_logic(type(obj))
@@ -15,7 +17,7 @@ class Unit(metaclass=_AllLogicMeta):
     def normalized(self): return Fraction(1) # ruff:ignore[no-self-use]
     @classmethod
     def from_normalized(cls, v, /):
-        if v == Fraction(1): return cls()
+        if v == 1: return cls()
         raise ValueError(f'could not construct instance from val {v}')
 Unit.T = Unit()
 class Boolean(metaclass=_FastEnumLogicMeta):

@@ -22,14 +22,13 @@ class MyLogic(metaclass=_FastEnumLogicMeta):
         'member_name_2': 2,
     }  # Required; dictionary mapping truth value names to values
 
-    # values do not have to be integers
     # By default, only the member with truth value 1 (if any) will evaluate to True in
     # a boolean context.
     # You can override this in the __bool__ method:
     def __bool__(self):
         return self.value == 2
 
-    # below are required
+    # the three operators below are required
     def __and__(self, other, /):
         return (self.value, other.value) == (1, 2)
 
@@ -39,7 +38,6 @@ class MyLogic(metaclass=_FastEnumLogicMeta):
     def __invert__(self):
         return type(self)((self.value + 1) % 3)
 
-    # no need to define __init_subclass__ since all logic classes must be unsubclassable
     # below are optional
     def normalized(self):  # return a `fractions.Fraction`
         return Fraction((3, 1, 0.5)[self.value])
